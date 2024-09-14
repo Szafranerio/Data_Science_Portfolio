@@ -1,8 +1,8 @@
 from tkinter import *
-from tkinter import messagebox
+from tkinter import messagebox, ttk, END
 
 FONT_NAME = "Courier"
-ANALYSIS = ['Price', 'RSI', 'MACD', 'Bollinger Bands', 'M10&M20', 'ALL']
+analysis = ['Price', 'RSI', 'MACD', 'Bollinger Bands', 'M10&M20', 'ALL']
 
 # UI
 
@@ -37,12 +37,18 @@ input_mail.grid(column=1, row=3)
 analysis_type = Label(text='Choose analysis type', font=(FONT_NAME, 12))
 analysis_type.grid(column=0, row=4)
 
+listbox = Listbox(window, selectmode='multiple', exportselection=0, width=21)
+listbox.grid(column=1, row=4)
+
+for value in analysis:
+    listbox.insert(END, value)
 
 
-
-
-
-
-
+def selected_item():
+    for i in listbox.curselection():
+        print(listbox.get(i))
+        
+button = Button(text='Send', command=selected_item)
+button.grid(column=2,row=4)
 
 window.mainloop()
