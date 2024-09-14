@@ -16,11 +16,11 @@ def send_data():
         messagebox.showwarning(title="Warning", message="Check your data")
     elif len(ticker) > 8:
         messagebox.showwarning(title="Warning", message='Ticker to long')
-    elif days > 720:
-        messagebox.showwarning(title="Warning", message='Day period to long')
+    elif days < 1 or days > 720:
+        messagebox.showwarning(
+            title="Warning", message='Check your date period')
     elif "@" not in mail:
         messagebox.showwarning(title="Warning", message='Check your mail')
-
         return
 
 
