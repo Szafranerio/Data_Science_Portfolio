@@ -1,2 +1,15 @@
 {
-    
+    "stock": {
+        "ticker": "BTC-USD",
+        "days": 700,
+        "mail": "mazururrszula@gmail.com",
+        "analysis": [
+            "Price",
+            "Candlestick",
+            "RSI",
+            "MACD",
+            "Bollinger Bands",
+            "M10&M20"
+        ]
+    }
+}
