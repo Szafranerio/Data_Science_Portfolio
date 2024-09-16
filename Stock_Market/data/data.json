@@ -1,15 +1,13 @@
 {
     "stock": {
-        "ticker": "BTC-USD",
-        "days": 700,
-        "mail": "mazururrszula@gmail.com",
+        "ticker": "XRP-USD",
+        "days": 500,
+        "mail": "bartekszafran@icloud.com",
         "analysis": [
-            "Price",
             "Candlestick",
             "RSI",
-            "MACD",
-            "Bollinger Bands",
-            "M10&M20"
-        ]
+            "MACD"
+        ],
+        "name": "Ripple"
     }
 }
