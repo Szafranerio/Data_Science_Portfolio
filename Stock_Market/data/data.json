@@ -1,6 +1,6 @@
 {
     "stock": {
-        "ticker": "XRP-USD",
+        "ticker": "BTC-USD",
         "days": 500,
         "mail": "bartekszafran@icloud.com",
         "analysis": [
@@ -8,6 +8,6 @@
             "RSI",
             "MACD"
         ],
-        "name": "Ripple"
+        "name": "Bitcoin"
     }
 }
