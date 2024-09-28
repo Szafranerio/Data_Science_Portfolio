@@ -9,8 +9,6 @@ FONT = ('Comic Sans MS', 15, 'bold')
 data = []
 
 # Delete all data from data.json before using the program
-
-
 def initialize_data_file():
     data_file_path = './data/data.json'
 
