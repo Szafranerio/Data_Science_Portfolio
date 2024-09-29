@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import os
 
-FONT = ('Comic Sans MS', 15, 'bold')
+FONT = ('Comic Sans MS', 18, 'bold')
 data = []
 
 # Delete all data from data.json before using the program
