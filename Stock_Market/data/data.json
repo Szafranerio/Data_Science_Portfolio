@@ -1,13 +1,15 @@
 {
     "stock": {
         "ticker": "BTC-USD",
-        "days": 500,
+        "days": 700,
         "mail": "bartekszafran@icloud.com",
         "analysis": [
+            "Price",
             "Candlestick",
             "RSI",
-            "MACD"
+            "MACD",
+            "Bollinger_Bands"
         ],
-        "name": "Bitcoin"
+        "name": "BITCOIN"
     }
 }
