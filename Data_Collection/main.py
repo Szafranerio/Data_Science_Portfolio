@@ -16,25 +16,43 @@ def recive_data():
     name = input_name.get().capitalize()
     surname = input_surname.get().capitalize()
     birthday = input_age.get()
-    nation = input_nation.get()
-    address = input_address.get()
+    nation = input_nation.get().capitalize()
+    city = input_address.get()
     cpr = input_cpr.get()
     mail = input_mail.get()
     number = input_number.get()
     
-    try:
-        number = int(number)
-        birthday = int(birthday)
-    except ValueError:
-        messagebox.showwarning(title="Warning", message="Enter only numbers!")
+    #Validation of data
+    if not re.search(r"[a-zA-Z]+", name) or not re.search(r"[a-zA-Z]+", surname):
+        messagebox.showwarning(title="Warning", message="Name and Surname should only contain alphabetic characters.")
         return
-    
+
+    # Validate birthday
+    if not re.search(r"^([0-2]?[1-9]|[12][0-9]|3[01])[-](0?[1-9]|1[0-2])[-](19[5-9]\d|20[0-1]\d|202[0-4])$", birthday):
+        messagebox.showwarning(title="Warning", message="Invalid birthday! Make sure the date is between 1951 and 2024 in the format DD-MM-YYYY.")
+        return
+
+    # Validate CPR number
+    if not re.search(r"^\d{6}[-.]?\d{4}$", cpr):
+        messagebox.showwarning(title="Warning", message="Invalid CPR number! It should follow the format XXXXXX-XXXX or XXXXXX.XXXX.")
+        return
+
+    # Validate email
+    if not re.search(r"^\w+@\w+\.\w+$", mail):
+        messagebox.showwarning(title="Warning", message="Invalid email address!")
+        return
+
+    # Validate phone number
+    if not re.search(r"^[1-9]\d{7}$", number):
+        messagebox.showwarning(title="Warning", message="Invalid phone number! It should be 8 digits starting with a number between 1 and 9.")
+        return
+
     new_data = {
         'personal_data': {
             'name': name + " " + surname,
             'birthday': birthday,
             'nation': nation,
-            'address': address,
+            'address': city,
             'cpr': cpr,
             'mail': mail,
             'number': number,
@@ -98,9 +116,31 @@ def selected_item():
     for v in chosen:
         op = listbox.get(v)
         global_branches_value.append(op)
-    
+
+def show_data():
+    script_directory = os.path.dirname(__file__)
+    data_file_path = os.path.join(script_directory, 'data', 'data.json')
+
+    try:
+        with open(data_file_path, mode="r") as data_file:
+            data = json.load(data_file)
+    except FileNotFoundError:
+        messagebox.showerror(title="Error", message="No data file found!")
+        return
+    except json.JSONDecodeError:
+        messagebox.showerror(title="Error", message="Error reading data!")
+        return
 
     
+    data_window = Toplevel(window)
+    data_window.title("Saved Data")
+    text_area = Text(data_window, wrap='word', width=80, height=20)
+    text_area.pack(padx=10, pady=10)
+    text_area.insert(END, json.dumps(data, indent=4))
+    text_area.config(state=DISABLED)
+
+def send_to_mail_csv():
+    pass  
 
 #UI 
 
@@ -125,7 +165,7 @@ Label(text = 'Surname', font=(FONT_NAME, 12)).grid(column=0, row=3, sticky='e', 
 input_surname = Entry(width=30)
 input_surname.grid(column=1, row=3)
 
-Label(text = 'Birthday', font=(FONT_NAME, 12)).grid(column=0, row=4, sticky='e', padx=10, pady=5)
+Label(text = 'Birthday (DD-MM-YYYY)', font=(FONT_NAME, 12)).grid(column=0, row=4, sticky='e', padx=10, pady=5)
 input_age = Entry(width=30)
 input_age.grid(column=1, row=4)
     
@@ -133,7 +173,7 @@ Label(text = 'Nationality', font=(FONT_NAME, 12)).grid(column=0, row=5, sticky='
 input_nation = Entry(width=30)
 input_nation.grid(column=1, row=5)
     
-Label(text = 'Address', font=(FONT_NAME, 12)).grid(column=0, row=6, sticky='e', padx=10, pady=5)
+Label(text = 'City', font=(FONT_NAME, 12)).grid(column=0, row=6, sticky='e', padx=10, pady=5)
 input_address = Entry(width=30)
 input_address.grid(column=1, row=6)
 
@@ -152,6 +192,13 @@ input_number.grid(column=1, row=9)
 #Save data
 button = Button(text='Save', command=lambda:[selected_item(), recive_data()])
 button.grid(column=1, row=10)
+
+button_show = Button(text='Show data', command=show_data)
+button_show.grid(column=1, row=11)
+
+#An option for the future if there would be more data for BI analysis
+button_export = Button(text='Export to CSV') 
+button_export.grid(column=1, row=12)
 
 
 window.mainloop()
