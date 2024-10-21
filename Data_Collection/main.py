@@ -2,6 +2,7 @@ import json
 from tkinter import *
 from tkinter import messagebox, ttk, END
 import os
+import re
 
 FONT_NAME = "Courier"
 branches = ['Kitchen', 'Floor', 'Cleaning', 'Stakeholder', 'Customers', 'Management']
@@ -140,7 +141,6 @@ Label(text = 'CPR', font=(FONT_NAME, 12)).grid(column=0, row=7, sticky='e', padx
 input_cpr = Entry(width=30)
 input_cpr.grid(column=1, row=7)
 
-
 Label(text = 'Mail', font=(FONT_NAME, 12)).grid(column=0, row=8, sticky='e', padx=10, pady=5)
 input_mail = Entry(width=30)
 input_mail.grid(column=1, row=8)
@@ -154,8 +154,4 @@ button = Button(text='Save', command=lambda:[selected_item(), recive_data()])
 button.grid(column=1, row=10)
 
 
-        
-        
-      
-        
 window.mainloop()
