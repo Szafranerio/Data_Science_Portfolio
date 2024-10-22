@@ -39,8 +39,8 @@ def recive_data():
         return
 
     # Validate CPR number
-    if not re.search(r"^\d{6}[-.]?\d{4}$", cpr):
-        messagebox.showwarning(title="Warning", message="Invalid CPR number! It should follow the format XXXXXX-XXXX or XXXXXX.XXXX.")
+    if not re.search(r"^\d{6}[-]?\d{4}$", cpr):
+        messagebox.showwarning(title="Warning", message="Invalid CPR number! It should follow the format XXXXXX-XXXX")
         return
 
     # Validate email
