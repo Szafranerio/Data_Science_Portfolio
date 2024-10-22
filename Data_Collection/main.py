@@ -3,14 +3,20 @@ from tkinter import *
 from tkinter import messagebox, ttk, END
 import os
 import re
+import smtplib
+from dotenv import load_dotenv
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.application import MIMEApplication
+
 
 FONT_NAME = "Courier"
 branches = ['Kitchen', 'Floor', 'Cleaning', 'Stakeholder', 'Customers', 'Management']
 
 global_branches_value = []
+load_dotenv()
 
 #Functions
-
 def recive_data():
     global global_branches_value
     name = input_name.get().capitalize()
@@ -61,19 +67,13 @@ def recive_data():
     }
     
     try:
-        
         script_directory = os.path.dirname(__file__)
-
-        
         data_folder_path = os.path.join(script_directory, 'data')
-
         
         if not os.path.exists(data_folder_path):
             os.makedirs(data_folder_path)
 
-        
         data_file_path = os.path.join(data_folder_path, 'data.json')
-
         
         if os.path.exists(data_file_path):
             try:
@@ -99,7 +99,6 @@ def recive_data():
         messagebox.showerror(title="Error", message=f"An error occurred: {e}")
 
     finally:
-        # Clear the input fields
         input_name.delete(0, END)
         input_surname.delete(0, END)
         input_age.delete(0, END)
@@ -131,7 +130,6 @@ def show_data():
         messagebox.showerror(title="Error", message="Error reading data!")
         return
 
-    
     data_window = Toplevel(window)
     data_window.title("Saved Data")
     text_area = Text(data_window, wrap='word', width=80, height=20)
@@ -139,17 +137,67 @@ def show_data():
     text_area.insert(END, json.dumps(data, indent=4))
     text_area.config(state=DISABLED)
 
-def send_to_mail_csv():
-    pass  
+def send_to_mail():
+    global input_send_mail
+    mail_window = Toplevel(window)
+    mail_window.title('Send Mail')
+    mailing = Label(mail_window, text='Input your mail: ', font=(FONT_NAME, 12)).grid(column=0, row=1, sticky='e', padx=10, pady=5)
+    input_send_mail = Entry(mail_window, width=30)
+    input_send_mail.grid(column=1, row=1)
+    
+    send_button = Button(mail_window, text='Send', command=lambda: send(input_send_mail))
+    send_button.grid(column=1, row=2)
+    
+def send(input_send_mail):
+    send_mail = input_send_mail.get()
+    
+    if not re.search(r"^\w+@\w+\.\w+$", send_mail):
+        messagebox.showwarning(title="Warning", message="Invalid email address!")
+        return
+
+    mail = os.getenv('MAIL')
+    password = os.getenv('PASSWORD')
+    recipients = send_mail
+    subject = 'Data Export'
+    smtp_server = 'smtp.gmail.com'
+    smtp_port = 587
+    
+    msg = MIMEMultipart()
+    msg['From'] = mail
+    msg['To'] = recipients
+    msg['Subject'] = subject
+    
+    body = "Please find the attached data.json file."
+    body_part = MIMEText(body, 'plain')
+    msg.attach(body_part)
+
+    script_directory = os.path.dirname(__file__)
+    data_file_path = os.path.join(script_directory, 'data', 'data.json')
+
+    try:
+        with open(data_file_path, 'rb') as file:
+            file_part = MIMEApplication(file.read(), Name="data.json")
+            file_part['Content-Disposition'] = 'attachment; filename="data.json"'
+            msg.attach(file_part)
+    except Exception as e:
+        messagebox.showerror(title="Error", message=f"Could not attach file: {e}")
+        return
+
+    try:
+        with smtplib.SMTP(smtp_server, smtp_port) as connection:
+            connection.starttls()
+            connection.login(user=mail, password=password)
+            connection.sendmail(from_addr=mail, to_addrs=recipients, msg=msg.as_string())
+        messagebox.showinfo(title="Success", message="Email sent successfully!")
+    except Exception as e:
+        messagebox.showerror(title="Error", message=f"Error sending email: {e}")
 
 #UI 
-
 window = Tk()
 window.config(width=500, height=500, padx=25, pady=25)
 window.title('Data Collection')
 
 #Inputs and buttons
-
 Label(text='Choose type:', font=(FONT_NAME, 12)).grid(column=0, row=1, sticky='e', padx=10, pady=5)
 listbox = Listbox(window, selectmode='multiple', exportselection=0, width=30, height=5)
 listbox.grid(column=1, row=1, padx=10, pady=5)
@@ -196,9 +244,7 @@ button.grid(column=1, row=10)
 button_show = Button(text='Show data', command=show_data)
 button_show.grid(column=1, row=11)
 
-#An option for the future if there would be more data for BI analysis
-button_export = Button(text='Export to CSV') 
+button_export = Button(text='Send to Mail', command=send_to_mail) 
 button_export.grid(column=1, row=12)
-
 
 window.mainloop()
