@@ -147,4 +147,8 @@ send_button = Button(text='Send to mail',
 send_button.grid(column=2, row=3)
 
 add_button = Button(text='Add to list',
-                      highli
+                      highlightthickness=0, command=send_to_mail)
+add_button.grid(column=1, row=3)
+
+next_card()
+window.mainloop()
