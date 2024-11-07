@@ -1,1 +1,20 @@
-[]
+[
+    {
+        "name": "eggs",
+        "weight": 10.0,
+        "aimed": 3,
+        "recipe": "10"
+    },
+    {
+        "name": "water",
+        "weight": 200.0,
+        "aimed": 3,
+        "recipe": "10"
+    },
+    {
+        "name": "mel",
+        "weight": 50.0,
+        "aimed": 3,
+        "recipe": "10"
+    }
+]

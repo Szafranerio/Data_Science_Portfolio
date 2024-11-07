@@ -1,7 +1,7 @@
 {
     "stock": {
-        "ticker": "BTC-USD",
-        "days": 700,
+        "ticker": "XRP-USD",
+        "days": 400,
         "mail": "bartekszafran@icloud.com",
         "analysis": [
             "Price",
@@ -10,6 +10,6 @@
             "MACD",
             "Bollinger_Bands"
         ],
-        "name": "BITCOIN"
+        "name": "Ripple"
     }
 }

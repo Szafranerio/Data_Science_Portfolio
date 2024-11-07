@@ -1,0 +1,191 @@
+Unnamed: 0.1,Unnamed: 0,Danish,English
+0,0,en del,a part
+1,1,en historie,a history
+2,2,at søge,to search
+3,3,kun,only
+4,4,politiet,the police
+5,5,en kvinde,a woman
+6,6,en mand,a man
+7,7,et barn,a child
+8,8,et arbejde,a job/work
+9,9,at elske,to love
+10,10,at leve,to live
+11,11,at spørge,to ask
+12,12,at kunne,can
+13,13,at ville,to want
+14,14,at se,to see
+15,15,et hus,a house
+16,16,en bog,a book
+17,17,penge,money
+18,18,en ven,a friend
+19,19,en familie,a family
+20,20,en skole,a school
+22,22,en lærer,a teacher
+23,23,en bil,a car
+24,24,at købe,to buy
+25,25,at sælge,to sell
+26,26,at løbe,to run
+27,27,at svømme,to swim
+28,28,at spille,to play
+29,29,at lave,to make
+30,30,at spise,to eat
+31,31,at drikke,to drink
+32,32,en læsning,a reading
+33,33,at skrive,to write
+34,34,at forstå,to understand
+35,35,at tænke,to think
+36,36,at huske,to remember
+37,37,at tage,to take
+38,38,at give,to give
+39,39,at finde,to find
+40,40,at hjælpe,to help
+41,41,at åbne,to open
+42,42,at lukke,to close
+44,44,at bo,to live
+45,45,at dø,to die
+47,47,en arbejder,a worker
+48,48,en chef,a boss
+49,49,en kollega,a colleague
+50,50,et møde,a meeting
+52,52,en beslutning,a decision
+53,53,en samtale,a conversation
+54,54,en computer,a computer
+55,55,internettet,the internet
+56,56,en e-mail,an email
+58,59,en artikel,an article
+59,61,en ferie,a holiday
+60,63,et tog,a train
+61,64,en bus,a bus
+62,65,en cykel,a bicycle
+63,66,et skib,a ship
+64,67,et rejsekort,a travel card
+65,68,et pas,a passport
+66,69,et visum,a visa
+67,70,en lufthavn,an airport
+68,71,en station,a station
+69,72,et hotel,a hotel
+70,73,en restaurant,a restaurant
+72,75,mad,food
+73,76,en drik,a drink
+75,78,kaffe,coffee
+76,79,te,tea
+77,80,juice,juice
+78,81,øl,beer
+79,82,vin,wine
+80,83,kød,meat
+81,84,fisk,fish
+82,85,brød,bread
+83,86,ost,cheese
+84,87,smør,butter
+85,88,sukker,sugar
+86,89,salt,salt
+87,90,peber,pepper
+88,91,frugt,fruit
+89,92,grøntsager,vegetables
+91,94,en kartoffel,a potato
+92,95,pasta,pasta
+94,97,is,ice cream
+95,98,en suppe,a soup
+96,99,en sandwich,a sandwich
+97,100,en pizza,a pizza
+98,101,en burger,a burger
+99,102,en sovs,a sauce
+100,103,en smag,a taste
+101,104,en menu,a menu
+102,105,en regning,a bill
+104,107,et kort,a card
+105,108,en butik,a shop
+106,109,et supermarked,a supermarket
+107,110,et marked,a market
+108,111,et indkøb,shopping
+109,112,sko,shoes
+110,115,en skjorte,a shirt
+111,116,en kjole,a dress
+112,118,et ur,a watch
+113,119,smykker,jewelry
+114,120,ringe,rings
+116,122,en taske,a bag
+117,123,en paraply,an umbrella
+118,124,briller,glasses
+119,125,solbriller,sunglasses
+120,126,en læge,a doctor
+121,127,en sygeplejerske,a nurse
+122,128,et hospital,a hospital
+123,129,en klinik,a clinic
+125,131,en pille,a pill
+126,132,syg,sick
+127,133,sund,healthy
+128,134,en kropsdel,a body part
+129,135,et hoved,a head
+130,136,en hånd,a hand
+131,137,en fod,a foot
+132,138,et ben,a leg
+134,140,et øre,an ear
+135,141,en næse,a nose
+136,142,en mund,a mouth
+137,143,en tand,a tooth
+138,144,hår,hair
+139,145,hud,skin
+140,146,en mave,a stomach
+141,147,en ryg,a back
+142,148,et hjerte,a heart
+143,149,blod,blood
+144,150,en knogle,a bone
+146,152,luft,air
+147,153,vand,water
+148,154,ild,fire
+149,155,jord,earth
+150,156,et træ,a tree
+151,157,en blomst,a flower
+152,158,en plante,a plant
+153,159,et dyr,an animal
+154,160,en fugl,a bird
+155,161,en fisk,a fish
+156,162,en kat,a cat
+157,163,en hund,a dog
+158,164,en ko,a cow
+159,165,en hest,a horse
+161,167,et får,a sheep
+162,169,en abe,a monkey
+163,170,en elefant,an elephant
+164,171,en tiger,a tiger
+165,172,en løve,a lion
+166,173,en bjørn,a bear
+167,174,en slange,a snake
+168,175,insekter,insects
+169,176,en sol,a sun
+170,177,en måne,a moon
+171,178,en stjerne,a star
+172,179,vejret,the weather
+174,181,regn,rain
+175,182,vind,wind
+176,183,sne,snow
+177,184,torden,thunder
+178,185,lyn,lightning
+179,186,temperaturen,the temperature
+180,187,varmt,hot
+181,188,koldt,cold
+182,189,en dag,a day
+183,190,en nat,a night
+184,191,en morgen,a morning
+185,192,en aften,an evening
+187,194,en måned,a month
+188,195,et år,a year
+189,196,tid,time
+190,197,et ur,a clock
+191,198,en kalender,a calendar
+192,199,en dato,a date
+193,200,en fest,a party
+194,201,musik,music
+195,202,en film,a movie
+196,203,et teater,a theater
+198,205,et maleri,a painting
+200,207,et museum,a museum
+203,210,en koncert,a concert
+204,211,en opera,an opera
+205,212,dans,dance
+206,213,et tegn,a sign
+207,214,et symbol,a symbol
+208,215,et sprog,a language
+209,216,et ord,a word
+212,219,alfabetet,the alphabet
