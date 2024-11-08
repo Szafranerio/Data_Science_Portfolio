@@ -7,7 +7,6 @@ en mand,a man
 et barn,a child
 et arbejde,a job/work
 at elske,to love
-at leve,to live
 at spørge,to ask
 at kunne,can
 at ville,to want
@@ -45,7 +44,6 @@ at føde,to be born
 en arbejder,a worker
 en chef,a boss
 en kollega,a colleague
-en forretning,a business
 en beslutning,a decision
 en samtale,a conversation
 en telefon,a telephone
@@ -57,8 +55,6 @@ en nyhed,a news
 en ferie,a holiday
 at rejse,to travel
 et fly,an airplane
-et tog,a train
-en bus,a bus
 et skib,a ship
 et rejsekort,a travel card
 et pas,a passport
@@ -69,8 +65,6 @@ kaffe,coffee
 te,tea
 juice,juice
 øl,beer
-vin,wine
-fisk,fish
 brød,bread
 ost,cheese
 smør,butter
@@ -105,13 +99,10 @@ ringe,rings
 en taske,a bag
 briller,glasses
 solbriller,sunglasses
-en læge,a doctor
-en sygeplejerske,a nurse
 en klinik,a clinic
 en pille,a pill
 syg,sick
 sund,healthy
-en kropsdel,a body part
 en hånd,a hand
 en fod,a foot
 et øje,an eye
@@ -135,7 +126,6 @@ et dyr,an animal
 en fisk,a fish
 en kat,a cat
 en hund,a dog
-en ko,a cow
 en hest,a horse
 en gris,a pig
 en abe,a monkey
@@ -168,7 +158,6 @@ en dato,a date
 en film,a movie
 et maleri,a painting
 en skulptur,a sculpture
-et museum,a museum
 en udstilling,an exhibition
 en ballet,a ballet
 en koncert,a concert

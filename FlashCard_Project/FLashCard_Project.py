@@ -1,17 +1,18 @@
 from tkinter import *
-import pandas
+import pandas as pd
 import random
 import json
-from tkinter import *
 from tkinter import messagebox, ttk, END
 import os
 import re
 import smtplib
+import locale
 from dotenv import load_dotenv
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
-
+from tkinter import ttk
+from natsort import natsorted, ns
 
 load_dotenv()
 BACKGROUND_COLOR = "#B1DDC6"
@@ -20,13 +21,13 @@ to_learn = {}
 FONT_NAME = "Courier"
 
 try:
-    danish_data = pandas.read_csv('./data/data/words_to_learn.csv')
+    danish_data = pd.read_csv('./data/data/words_to_learn.csv')
 except FileNotFoundError:
-    orignal_data = pandas.read_csv('./data/data/danish_words.csv')
+    original_data = pd.read_csv('./data/data/danish_words.csv')
     to_learn = original_data.to_dict(orient='records')
+    original_data.to_csv('./data/data/words_to_learn.csv', index=False)
 else:
     to_learn = danish_data.to_dict(orient='records')
-
 
 def next_card():
     global current_card, flip_timer
@@ -37,20 +38,110 @@ def next_card():
     canvas.itemconfig(card_background, image=front_card)
     flip_timer = window.after(3000, func=flip_card)
 
-
 def flip_card():
     canvas.itemconfig(card_title, text='English', fill='white')
     canvas.itemconfig(card_word, text=current_card['English'], fill='white')
     canvas.itemconfig(card_background, image=back_card)
+    
+# Progress function
+def update_progress(value):
+    progress['value'] = value
+    window.update_idletasks()
 
+def increment_progress(current, total):
+    value = (current / total) * 100
+    update_progress(value)
+
+current_word_index = 0
+total_words = len(to_learn)    
 
 def is_known():
-    to_learn.remove(current_card)
-    data = pandas.DataFrame(to_learn)
-    data.to_csv('./data/data/words_to_learn.csv', index=False)
-    next_card()
+    global current_word_index, current_card
+    if current_card in to_learn:
+        to_learn.remove(current_card)
+        current_word_index += 1
+        increment_progress(current_word_index, total_words)
+        data = pd.DataFrame(to_learn)
+        data.to_csv('./data/data/words_to_learn.csv', index=False)
+        next_card()
+
+def add_word():
+    global input_word
+    add_window = Toplevel(window)
+    add_window.title("New word")
+    word = Label(add_window, text='Input new word (danish_word,english_word): ', font=(FONT_NAME, 12)).grid(
+        column=0, row=0, sticky='e', padx=10, pady=5)
+    input_word = Entry(add_window, width=30)
+    input_word.grid(column=1, row=0)
+
+    send_button = Button(add_window, text='Send',
+                         command=lambda: add(input_word))
+    send_button.grid(column=2, row=0)
+    
+def add(input_word):
+    add_word = input_word.get()
+    
+    if not re.search(r"^[\wÀ-ÖØ-öø-ÿ ]+,[\wÀ-ÖØ-öø-ÿ ]+$", add_word):
+        messagebox.showwarning(
+            title="Warning", message="Check the word!")
+        return
+    
+    danish, english = add_word.split(',')
+
+    try:
+        existing_data = pd.read_csv('./data/data/danish_words.csv')
+        existing_data_set = set(
+            (row['Danish'].strip(), row['English'].strip()) for _, row in existing_data.iterrows()
+        )
+    except FileNotFoundError:
+        existing_data_set = set()
+
+    if (danish, english) in existing_data_set:
+        messagebox.showinfo(title="Duplicate", message="This word pair already exists!")
+        return
+    
+    with open('./data/data/danish_words.csv','a') as fd:
+        fd.write(f"\n{add_word.strip()}")
+    messagebox.showinfo(title="Success", message="Word added successfully!")
+    input_word.delete(0,END)
 
 
+locale.setlocale(locale.LC_ALL, 'da_DK.UTF-8')
+
+def show_data():
+    try:
+        data = pd.read_csv('./data/data/danish_words.csv')
+        prefixes_to_exclude = ('en ', 'et ', 'at ', 'af ', 'i ', 'på ', 'til ', 'med ', 'om ', 'ud ')
+
+        def remove_prefix(word):
+            for prefix in prefixes_to_exclude:
+                if word.startswith(prefix):
+                    return word[len(prefix):]
+            return word
+
+        data['sort_key'] = data['Danish'].apply(remove_prefix)
+
+        data = data.loc[natsorted(data.index, key=lambda x: data.loc[x, 'sort_key'], alg=ns.LOCALE)].reset_index(drop=True)
+
+        data = data.drop(columns='sort_key')
+        data_str = data.to_string(index=False)
+
+        data_window = Toplevel(window)
+        data_window.title("Saved Data")
+        text_area = Text(data_window, wrap='word', width=80, height=20)
+        text_area.pack(padx=10, pady=10)
+        text_area.insert(END, data_str)
+        text_area.config(state=DISABLED)
+
+    except FileNotFoundError:
+        messagebox.showerror(title="Error", message="No data file found!")
+    except pd.errors.EmptyDataError:
+        messagebox.showerror(title="Error", message="The data file is empty!")
+    except locale.Error as e:
+        messagebox.showerror(title="Locale Error", message=f"Locale error: {e}")
+    except Exception as e:
+        messagebox.showerror(title="Error", message=f"An error occurred: {e}")
+    
 def send_to_mail():
     global input_send_mail
     mail_window = Toplevel(window)
@@ -63,7 +154,6 @@ def send_to_mail():
     send_button = Button(mail_window, text='Send',
                          command=lambda: send(input_send_mail))
     send_button.grid(column=2, row=0)
-
 
 def send(input_send_mail):
     send_mail = input_send_mail.get()
@@ -89,13 +179,12 @@ def send(input_send_mail):
     body_part = MIMEText(body, 'plain')
     msg.attach(body_part)
 
-    
     data_file_path = './data/data/words_to_learn.csv'
 
     try:
         with open(data_file_path, 'rb') as file:
-            file_part = MIMEApplication(file.read(), Name="data.json")
-            file_part['Content-Disposition'] = 'attachment; filename="data.json"'
+            file_part = MIMEApplication(file.read(), Name="data.txt")
+            file_part['Content-Disposition'] = 'attachment; filename="data.txt"'
             msg.attach(file_part)
     except Exception as e:
         messagebox.showerror(
@@ -110,10 +199,18 @@ def send(input_send_mail):
                 from_addr=mail, to_addrs=recipients, msg=msg.as_string())
         messagebox.showinfo(
             title="Success", message="Email sent successfully!")
+        if os.path.exists(data_file_path):
+            os.remove(data_file_path)
+            messagebox.showinfo(
+                title="File Removed", message="words_to_learn.csv has been deleted.")
+        else:
+            messagebox.showwarning(
+                title="File Not Found", message="The file was not found for deletion.")
     except Exception as e:
         messagebox.showerror(
             title="Error", message=f"Error sending email: {e}")
-
+    finally:
+        input_send_mail.delete(0,END)
 
 # User Interface
 window = Tk()
@@ -131,24 +228,33 @@ card_title = canvas.create_text(
 card_word = canvas.create_text(
     400, 263, text='WORD', font=('Ariel', 60, 'bold'))
 canvas.config(bg=BACKGROUND_COLOR)
-canvas.grid(column=0, row=0, columnspan=2)
+canvas.grid(column=0, row=0, columnspan=3)
+
+progress = ttk.Progressbar(window, orient=HORIZONTAL, length=300, mode='determinate')
+progress.grid(column=0, row=3, columnspan=3, pady=20)
 
 # Button images
 ok_button = PhotoImage(file='./data/images/right.png')
 false_button = PhotoImage(file='./data/images/wrong.png')
 correct_button = Button(
-    image=ok_button, highlightthickness=0, command=is_known)
-correct_button.grid(column=3, row=2)
+    image=ok_button,  highlightbackground=BACKGROUND_COLOR,
+       highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=is_known)
+correct_button.grid(column=2, row=1)
 wrong_button = Button(image=false_button,
-                      highlightthickness=0, command=next_card)
-wrong_button.grid(column=0, row=2)
+                      highlightbackground=BACKGROUND_COLOR,
+       highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=next_card)
+wrong_button.grid(column=0, row=1)
 send_button = Button(text='Send to mail',
-                      highlightthickness=0, command=send_to_mail)
-send_button.grid(column=2, row=3)
-
+                      highlightbackground=BACKGROUND_COLOR,
+       highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=send_to_mail)
+send_button.grid(column=0, row=2)
 add_button = Button(text='Add to list',
-                      highlightthickness=0, command=send_to_mail)
-add_button.grid(column=1, row=3)
+                      highlightbackground=BACKGROUND_COLOR,
+       highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=add_word)
+add_button.grid(column=2, row=2)
 
-next_card()
+button_show = Button(text='Show data', highlightbackground=BACKGROUND_COLOR,
+       highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=show_data)
+button_show.grid(column=1, row=2)
+
 window.mainloop()
