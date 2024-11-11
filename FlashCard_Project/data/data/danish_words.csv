@@ -219,7 +219,6 @@ en uge,a week
 et ur,a watch
 et ur,a clock
 vand,water
-vand,water
 varmt,hot
 vejret,the weather
 en ven,a friend
@@ -228,3 +227,337 @@ at ville,to want
 vin,wine
 vind,wind
 et visum,a visa
+en by,a city
+et bord,a table
+en skov,a forest
+en himmel,a sky
+en vej,a road
+en båd,a boat
+et hav,an ocean
+en sten,a stone
+et slot,a castle
+et vindue,a window
+en stol,a chair
+en sko,a shoe
+en telefon,a phone
+et køkken,a kitchen
+en kniv,a knife
+en gaffel,a fork
+en ske,a spoon
+en kop,a cup
+et glas,a glass
+et tæppe,a blanket
+en seng,a bed
+et værelse,a room
+en dør,a door
+et loft,a ceiling
+en lampe,a lamp
+en mark,a field
+et bjerg,a mountain
+en ø,an island
+en å,a stream
+et kort,a map
+et blad,a leaf
+en kuglepen,a pen
+en blyant,a pencil
+et papir,a paper
+en boghandel,a bookstore
+et bibliotek,a library
+en biograf,a cinema
+en park,a park
+en fabrik,a factory
+et universitet,a university
+en elev,a student
+en butik,a store
+en café,a café
+en mad,food
+en drink,a drink
+en frugt,a fruit
+en grøntsag,a vegetable
+en gade,a street
+et tårn,a tower
+en bro,a bridge
+et palads,a palace
+et monument,a monument
+en statue,a statue
+en sø,a lake
+en flod,a river
+en strand,a beach
+en kyst,a coast
+en dal,a valley
+en ørken,a desert
+en regnskov,a rainforest
+en ørn,an eagle
+en ulv,a wolf
+en zebra,a zebra
+en giraf,a giraffe
+en får,a sheep
+en høne,a hen
+en hane,a rooster
+en and,a duck
+en svane,a swan
+en mus,a mouse
+en rotte,a rat
+en egern,a squirrel
+en kanin,a rabbit
+en skildpadde,a turtle
+en øgle,a lizard
+en måge,a seagull
+en delfin,a dolphin
+en hval,a whale
+en hummer,a lobster
+en krabbe,a crab
+en reke,a shrimp
+en blæksprutte,an octopus
+en haj,a shark
+en søstjerne,a starfish
+en snegl,a snail
+en orm,a worm
+en edderkop,a spider
+en bi,a bee
+en sommerfugl,a butterfly
+en myre,an ant
+en flue,a fly
+en mariehøne,a ladybug
+en bille,a beetle
+en hveps,a wasp
+en abe,an ape
+en skovhugger,a lumberjack
+en bager,a baker
+en kok,a chef
+en soldat,a soldier
+en politi,a police officer
+en brandmand,a firefighter
+en pilot,a pilot
+en chauffør,a driver
+en maskine,a machine
+en motor,an engine
+en tablet,a tablet
+en skærm,a screen
+en printer,a printer
+en scanner,a scanner
+et tastatur,a keyboard
+et program,a program
+en app,an app
+en mobiltelefon,a mobile phone
+et kamera,a camera
+en mikrofon,a microphone
+en højttaler,a speaker
+en ledning,a cable
+en oplader,a charger
+en stikkontakt,a socket
+et batteri,a battery
+et lys,a light
+en pære,a bulb
+et lysstofrør,a fluorescent light
+en fakkel,a torch
+en lommelygte,a flashlight
+en sti,a path
+en motorcykel,a motorcycle
+en færge,a ferry
+en helikopter,a helicopter
+en raket,a rocket
+en rumstation,a space station
+en satellit,a satellite
+et solsystem,a solar system
+en planet,a planet
+et univers,a universe
+en galakse,a galaxy
+et sort hul,a black hole
+et akvarium,an aquarium
+en festival,a festival
+en blomsterhave,a flower garden
+et legetøj,a toy
+et kæledyr,a pet
+en fodbold,a football
+en tennisketcher,a tennis racket
+en bold,a ball
+et puslespil,a puzzle
+et eventyr,an adventure
+en historie,a story
+en roman,a novel
+en krimi,a crime story
+en fantasy,a fantasy
+et drama,a drama
+en komedie,a comedy
+et teaterstykke,a play
+en scene,a stage
+et fotografi,a photograph
+en tegning,a drawing
+en pensel,a brush
+en farve,a color
+en blyantspidser,a pencil sharpener
+en viskelæder,an eraser
+en mappe,a folder
+en lommeregner,a calculator
+en notesbog,a notebook
+et skrivebord,a desk
+en tavle,a blackboard
+et klasselokale,a classroom
+en skolegård,a schoolyard
+en skraldespand,a trash can
+en bænk,a bench
+et fortov,a sidewalk
+et skilt,a sign
+et sving,a turn
+en indkørsel,a driveway
+en port,a gate
+en kæde,a chain
+en lås,a lock
+en nøgle,a key
+en håndtag,a handle
+et spejl,a mirror
+en vase,a vase
+et akvarie,a fish tank
+et malerhus,a painting house
+en vindueskarm,a windowsill
+en gardin,a curtain
+et dørtrin,a doorstep
+en gårdhave,a courtyard
+et skur,a shed
+et drivhus,a greenhouse
+en flagstang,a flagpole
+en trappe,a staircase
+en elevator,an elevator
+et tag,a roof
+et gardin,a curtain
+et hegn,a fence
+en græsplæne,a lawn
+et blomsterbed,a flowerbed
+et bassin,a basin
+en dam,a pond
+en springvand,a fountain
+en motorvej,a highway
+en landevej,a country road
+et lyskryds,a traffic light
+en rundkørsel,a roundabout
+et overkørsel,a railway crossing
+en vejbaneskift,a lane change
+et flyselskab,an airline
+et boardingkort,a boarding pass
+en passager,a passenger
+en afgang,a departure
+en ankomst,an arrival
+en vogn,a cart
+et sikkerhedsbælte,a seatbelt
+en rute,a route
+en destination,a destination
+en rejseguide,a travel guide
+en bagage,luggage
+en rygsæk,a backpack
+en kuffert,a suitcase
+et frimærke,a stamp
+en kuvert,an envelope
+en postkasse,a mailbox
+et postkontor,a post office
+en vejrudsigt,a weather forecast
+en sne,snow
+en storm,a storm
+en regnbyge,a rain shower
+en sky,a cloud
+en tåge,fog
+et snefald,a snowfall
+en kulde,cold
+en varme,heat
+en solopgang,a sunrise
+en solnedgang,a sunset
+en solstråle,a sunbeam
+en måneskin,a moonlight
+et stjerneskud,a shooting star
+en meteor,a meteor
+en computerskærm,a computer screen
+en USB-stick,a USB stick
+en harddisk,a hard disk
+en software,software
+en download,a download
+en upload,an upload
+et dokument,a document
+en fil,a file
+et internet,the internet
+en webside,a website
+en browser,a browser
+en server,a server
+en database,a database
+en kode,a code
+et script,a script
+en udvikler,a developer
+et operativsystem,an operating system
+en platform,a platform
+en cybersikkerhed,cybersecurity
+et netværk,a network
+en router,a router
+en modem,a modem
+et netværkskort,a network card
+en switch,a switch
+en proces,a process
+en opdatering,an update
+en backup,a backup
+et antivirus,an antivirus
+en firewall,a firewall
+en kryptering,encryption
+en decryption,decryption
+et password,a password
+et brugernavn,a username
+et ID,an ID
+et softwarefirma,a software company
+en softwareopdatering,a software update
+en installation,an installation
+en afinstallation,an uninstallation
+en plugin,a plugin
+en tilføjelse,an add-on
+en udvidelse,an extension
+en adgang,access
+en administrator,an administrator
+et værktøj,a tool
+en editor,an editor
+et felt,a field
+en formular,a form
+en template,a template
+en prototype,a prototype
+en simulering,a simulation
+en test,a test
+en fejlfinding,troubleshooting
+et interface,an interface
+en GUI,a GUI
+en bruger,a user
+en klient,a client
+et netværkssignal,a network signal
+en trådløs forbindelse,a wireless connection
+en signalforstærker,a signal booster
+et hotspot,a hotspot
+en mobilapp,a mobile app
+en webapp,a web app
+et ikon,an icon
+et faneblad,a tab
+en skærmlås,a screen lock
+en opløsning,a resolution
+et display,a display
+en lysstyrke,brightness
+en farveskærm,a color screen
+en baggrund,a background
+en startside,a homepage
+et hyperlink,a hyperlink
+en URL,a URL
+en sikkerhedskopi,a backup
+en adgangskode,a password
+et opkald,a call
+en videochat,a video chat
+et webcam,a webcam
+en lydstyrke,volume
+en afbryder,a switch
+en appstore,an app store
+en hukommelse,memory
+en RAM,RAM
+en CPU,a CPU
+en GPU,a GPU
+en harddiskplads,hard disk space
+et datacenter,a data center
+en webserver,a web server
+en filserver,a file server
+en streaming,streaming
+en ethernetport,an ethernet port
+en LAN-kabel,a LAN cable
+en netværksforbindelse,a network connection
+en netværkshastighed,network speed
+en hacker,a hacker
+en netværksbrud,a network breach
