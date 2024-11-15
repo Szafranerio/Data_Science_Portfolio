@@ -22,7 +22,7 @@ to_learn = {}
 FONT_NAME = "Courier"
 
 
-def add_edit_or_delete_word():
+def add_edit_or_delete_word(window):
     edit_window = Toplevel(window)
     edit_window.title("Add/Edit/Delete Words")
 
