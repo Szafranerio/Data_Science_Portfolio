@@ -14,6 +14,7 @@ from email.mime.application import MIMEApplication
 from tkinter import ttk
 from natsort import natsorted, ns
 import pyttsx3
+import add_edit_delete
 
 load_dotenv()
 BACKGROUND_COLOR = "#B1DDC6"
@@ -30,6 +31,7 @@ except FileNotFoundError:
 else:
     to_learn = danish_data.to_dict(orient='records')
 
+
 def next_card():
     global current_card, flip_timer
     window.after_cancel(flip_timer)
@@ -39,21 +41,26 @@ def next_card():
     canvas.itemconfig(card_background, image=front_card)
     flip_timer = window.after(3000, func=flip_card)
 
+
 def flip_card():
     canvas.itemconfig(card_title, text='English', fill='white')
     canvas.itemconfig(card_word, text=current_card['English'], fill='white')
     canvas.itemconfig(card_background, image=back_card)
 
+
 def update_progress(value):
     progress['value'] = value
     window.update_idletasks()
+
 
 def increment_progress(current, total):
     value = (current / total) * 100
     update_progress(value)
 
+
 current_word_index = 0
 total_words = len(to_learn)
+
 
 def is_known():
     global current_word_index, current_card
@@ -65,12 +72,15 @@ def is_known():
         data.to_csv('./data/data/words_to_learn.csv', index=False)
         next_card()
 
+
 locale.setlocale(locale.LC_ALL, 'da_DK.UTF-8')
+
 
 def show_data():
     try:
         data = pd.read_csv('./data/data/danish_words.csv')
-        prefixes_to_exclude = ('en ', 'et ', 'at ', 'af ', 'i ', 'på ', 'til ', 'med ', 'om ', 'ud ')
+        prefixes_to_exclude = ('en ', 'et ', 'at ', 'af ',
+                               'i ', 'på ', 'til ', 'med ', 'om ', 'ud ')
 
         def remove_prefix(word):
             for prefix in prefixes_to_exclude:
@@ -79,7 +89,8 @@ def show_data():
             return word
 
         data['sort_key'] = data['Danish'].apply(remove_prefix)
-        data = data.loc[natsorted(data.index, key=lambda x: data.loc[x, 'sort_key'], alg=ns.LOCALE)].reset_index(drop=True)
+        data = data.loc[natsorted(
+            data.index, key=lambda x: data.loc[x, 'sort_key'], alg=ns.LOCALE)].reset_index(drop=True)
         data = data.drop(columns='sort_key')
 
         data_window = Toplevel(window)
@@ -88,12 +99,14 @@ def show_data():
         # Search bar
         search_frame = Frame(data_window)
         search_frame.pack(pady=5)
-        Label(search_frame, text="Search:", font=(FONT_NAME, 12)).pack(side=LEFT, padx=5)
+        Label(search_frame, text="Search:", font=(
+            FONT_NAME, 12)).pack(side=LEFT, padx=5)
         search_entry = Entry(search_frame, width=30)
         search_entry.pack(side=LEFT, padx=5)
 
         # Create a Treeview widget
-        tree = ttk.Treeview(data_window, columns=("Danish", "English"), show='headings', height=15)
+        tree = ttk.Treeview(data_window, columns=(
+            "Danish", "English"), show='headings', height=15)
         tree.heading("Danish", text="Danish")
         tree.heading("English", text="English")
         tree.pack(padx=10, pady=10)
@@ -109,7 +122,7 @@ def show_data():
         # Search functionality
         def search_word():
             search_text = search_entry.get().strip().lower()
-            filtered_data = data[(data['Danish'].str.lower().str.contains(search_text)) | 
+            filtered_data = data[(data['Danish'].str.lower().str.contains(search_text)) |
                                  (data['English'].str.lower().str.contains(search_text))]
             populate_tree(filtered_data)
 
@@ -120,9 +133,11 @@ def show_data():
     except pd.errors.EmptyDataError:
         messagebox.showerror(title="Error", message="The data file is empty!")
     except locale.Error as e:
-        messagebox.showerror(title="Locale Error", message=f"Locale error: {e}")
+        messagebox.showerror(title="Locale Error",
+                             message=f"Locale error: {e}")
     except Exception as e:
         messagebox.showerror(title="Error", message=f"An error occurred: {e}")
+
 
 def send_to_mail():
     global input_send_mail
@@ -136,10 +151,12 @@ def send_to_mail():
     Button(mail_window, text='Send',
            command=lambda: send(input_send_mail)).grid(column=2, row=0)
 
+
 def send(input_send_mail):
     send_mail = input_send_mail.get()
     if not re.search(r"^\w+@\w+\.\w+$", send_mail):
-        messagebox.showwarning(title="Warning", message="Invalid email address!")
+        messagebox.showwarning(
+            title="Warning", message="Invalid email address!")
         return
 
     mail = os.getenv('MAIL')
@@ -166,24 +183,31 @@ def send(input_send_mail):
             file_part['Content-Disposition'] = 'attachment; filename="data.txt"'
             msg.attach(file_part)
     except Exception as e:
-        messagebox.showerror(title="Error", message=f"Could not attach file: {e}")
+        messagebox.showerror(
+            title="Error", message=f"Could not attach file: {e}")
         return
 
     try:
         with smtplib.SMTP(smtp_server, smtp_port) as connection:
             connection.starttls()
             connection.login(user=mail, password=password)
-            connection.sendmail(from_addr=mail, to_addrs=recipients, msg=msg.as_string())
-        messagebox.showinfo(title="Success", message="Email sent successfully!")
+            connection.sendmail(
+                from_addr=mail, to_addrs=recipients, msg=msg.as_string())
+        messagebox.showinfo(
+            title="Success", message="Email sent successfully!")
         if os.path.exists(data_file_path):
             os.remove(data_file_path)
-            messagebox.showinfo(title="File Removed", message="words_to_learn.csv has been deleted.")
+            messagebox.showinfo(title="File Removed",
+                                message="words_to_learn.csv has been deleted.")
         else:
-            messagebox.showwarning(title="File Not Found", message="The file was not found for deletion.")
+            messagebox.showwarning(
+                title="File Not Found", message="The file was not found for deletion.")
     except Exception as e:
-        messagebox.showerror(title="Error", message=f"Error sending email: {e}")
+        messagebox.showerror(
+            title="Error", message=f"Error sending email: {e}")
     finally:
         input_send_mail.delete(0, END)
+
 
 def add_edit_or_delete_word():
     edit_window = Toplevel(window)
@@ -191,7 +215,8 @@ def add_edit_or_delete_word():
 
     try:
         data = pd.read_csv('./data/data/danish_words.csv')
-        prefixes_to_exclude = ('en ', 'et ', 'at ', 'af ', 'i ', 'på ', 'til ', 'med ', 'om ', 'ud ')
+        prefixes_to_exclude = ('en ', 'et ', 'at ', 'af ',
+                               'i ', 'på ', 'til ', 'med ', 'om ', 'ud ')
 
         def remove_prefix(word):
             for prefix in prefixes_to_exclude:
@@ -200,14 +225,16 @@ def add_edit_or_delete_word():
             return word
 
         data['sort_key'] = data['Danish'].apply(remove_prefix)
-        data = data.loc[natsorted(data.index, key=lambda x: data.loc[x, 'sort_key'], alg=ns.LOCALE)].reset_index(drop=True)
+        data = data.loc[natsorted(
+            data.index, key=lambda x: data.loc[x, 'sort_key'], alg=ns.LOCALE)].reset_index(drop=True)
         data = data.drop(columns='sort_key')
         data_list = data.to_dict(orient='records')
 
         # Search bar
         search_frame = Frame(edit_window)
         search_frame.pack(pady=5)
-        Label(search_frame, text="Search:", font=(FONT_NAME, 12)).pack(side=LEFT, padx=5)
+        Label(search_frame, text="Search:", font=(
+            FONT_NAME, 12)).pack(side=LEFT, padx=5)
         search_entry = Entry(search_frame, width=30)
         search_entry.pack(side=LEFT, padx=5)
 
@@ -216,7 +243,8 @@ def add_edit_or_delete_word():
         frame.pack(pady=10)
 
         # Create a Treeview widget
-        tree = ttk.Treeview(frame, columns=("Danish", "English"), show='headings', height=15)
+        tree = ttk.Treeview(frame, columns=(
+            "Danish", "English"), show='headings', height=15)
         tree.heading("Danish", text="Danish")
         tree.heading("English", text="English")
         tree.pack()
@@ -232,7 +260,8 @@ def add_edit_or_delete_word():
         # Search words
         def search_word():
             search_text = search_entry.get().strip().lower()
-            filtered_data = [row for row in data_list if search_text in row['Danish'].lower() or search_text in row['English'].lower()]
+            filtered_data = [row for row in data_list if search_text in row['Danish'].lower(
+            ) or search_text in row['English'].lower()]
             populate_tree(filtered_data)
 
         search_entry.bind("<KeyRelease>", lambda event: search_word())
@@ -241,11 +270,13 @@ def add_edit_or_delete_word():
             add_window = Toplevel(edit_window)
             add_window.title("Add New Word")
 
-            Label(add_window, text="Danish:", font=(FONT_NAME, 12)).grid(row=0, column=0, padx=10, pady=5)
+            Label(add_window, text="Danish:", font=(FONT_NAME, 12)).grid(
+                row=0, column=0, padx=10, pady=5)
             danish_entry = Entry(add_window, width=30)
             danish_entry.grid(row=0, column=1, padx=10, pady=5)
 
-            Label(add_window, text="English:", font=(FONT_NAME, 12)).grid(row=1, column=0, padx=10, pady=5)
+            Label(add_window, text="English:", font=(FONT_NAME, 12)).grid(
+                row=1, column=0, padx=10, pady=5)
             english_entry = Entry(add_window, width=30)
             english_entry.grid(row=1, column=1, padx=10, pady=5)
 
@@ -254,11 +285,13 @@ def add_edit_or_delete_word():
                 english = english_entry.get().strip()
 
                 if not danish or not english:
-                    messagebox.showwarning("Warning", "Both fields must be filled.")
+                    messagebox.showwarning(
+                        "Warning", "Both fields must be filled.")
                     return
 
                 if (danish, english) in [(row['Danish'], row['English']) for row in data_list]:
-                    messagebox.showinfo("Duplicate", "This word pair already exists!")
+                    messagebox.showinfo(
+                        "Duplicate", "This word pair already exists!")
                     return
 
                 with open('./data/data/danish_words.csv', 'a') as fd:
@@ -268,24 +301,28 @@ def add_edit_or_delete_word():
                 populate_tree(data_list)
                 add_window.destroy()
 
-            Button(add_window, text="Save", command=save_new_word).grid(row=2, column=0, columnspan=2, pady=10)
+            Button(add_window, text="Save", command=save_new_word).grid(
+                row=2, column=0, columnspan=2, pady=10)
 
         def edit_selected():
             selected_item = tree.selection()
             if not selected_item:
-                messagebox.showwarning("Warning", "Please select a word to edit.")
+                messagebox.showwarning(
+                    "Warning", "Please select a word to edit.")
                 return
 
             edit_item = tree.item(selected_item)['values']
             edit_window_inner = Toplevel(edit_window)
             edit_window_inner.title("Edit Word")
 
-            Label(edit_window_inner, text="Danish:", font=(FONT_NAME, 12)).grid(row=0, column=0, padx=10, pady=5)
+            Label(edit_window_inner, text="Danish:", font=(
+                FONT_NAME, 12)).grid(row=0, column=0, padx=10, pady=5)
             danish_entry = Entry(edit_window_inner, width=30)
             danish_entry.grid(row=0, column=1, padx=10, pady=5)
             danish_entry.insert(0, edit_item[0])
 
-            Label(edit_window_inner, text="English:", font=(FONT_NAME, 12)).grid(row=1, column=0, padx=10, pady=5)
+            Label(edit_window_inner, text="English:", font=(
+                FONT_NAME, 12)).grid(row=1, column=0, padx=10, pady=5)
             english_entry = Entry(edit_window_inner, width=30)
             english_entry.grid(row=1, column=1, padx=10, pady=5)
             english_entry.insert(0, edit_item[1])
@@ -295,41 +332,51 @@ def add_edit_or_delete_word():
                 new_english = english_entry.get().strip()
 
                 if not new_danish or not new_english:
-                    messagebox.showwarning("Warning", "Both fields must be filled.")
+                    messagebox.showwarning(
+                        "Warning", "Both fields must be filled.")
                     return
 
-                data.loc[(data['Danish'] == edit_item[0]) & (data['English'] == edit_item[1]), ['Danish', 'English']] = [new_danish, new_english]
+                data.loc[(data['Danish'] == edit_item[0]) & (data['English'] == edit_item[1]), [
+                    'Danish', 'English']] = [new_danish, new_english]
                 data.to_csv('./data/data/danish_words.csv', index=False)
                 messagebox.showinfo("Success", "Word updated successfully!")
                 data_list = data.to_dict(orient='records')
                 populate_tree(data_list)
                 edit_window_inner.destroy()
 
-            Button(edit_window_inner, text="Save", command=save_changes).grid(row=2, column=0, columnspan=2, pady=10)
+            Button(edit_window_inner, text="Save", command=save_changes).grid(
+                row=2, column=0, columnspan=2, pady=10)
 
         def delete_selected():
             selected_item = tree.selection()
             if not selected_item:
-                messagebox.showwarning("Warning", "Please select a word to delete.")
+                messagebox.showwarning(
+                    "Warning", "Please select a word to delete.")
                 return
 
             delete_item = tree.item(selected_item)['values']
-            result = messagebox.askyesno("Confirmation", f"Are you sure you want to delete '{delete_item[0]}'?")
+            result = messagebox.askyesno(
+                "Confirmation", f"Are you sure you want to delete '{delete_item[0]}'?")
             if result:
-                data.drop(data[(data['Danish'] == delete_item[0]) & (data['English'] == delete_item[1])].index, inplace=True)
+                data.drop(data[(data['Danish'] == delete_item[0]) & (
+                    data['English'] == delete_item[1])].index, inplace=True)
                 data.to_csv('./data/data/danish_words.csv', index=False)
                 messagebox.showinfo("Success", "Word deleted successfully!")
                 data_list = data.to_dict(orient='records')
                 populate_tree(data_list)
 
-        Button(frame, text="Add New Word", command=add_new_word).pack(side=LEFT, padx=10, pady=5)
-        Button(frame, text="Edit Selected", command=edit_selected).pack(side=LEFT, padx=10, pady=5)
-        Button(frame, text="Delete Selected", command=delete_selected).pack(side=RIGHT, padx=10, pady=5)
+        Button(frame, text="Add New Word", command=add_new_word).pack(
+            side=LEFT, padx=10, pady=5)
+        Button(frame, text="Edit Selected", command=edit_selected).pack(
+            side=LEFT, padx=10, pady=5)
+        Button(frame, text="Delete Selected", command=delete_selected).pack(
+            side=RIGHT, padx=10, pady=5)
 
     except FileNotFoundError:
         messagebox.showerror("Error", "No data file found!")
     except pd.errors.EmptyDataError:
         messagebox.showerror("Error", "The data file is empty!")
+
 
 def speak():
     try:
@@ -348,7 +395,9 @@ def speak():
         engine.runAndWait()
 
     except Exception as e:
-        messagebox.showerror("Error", f"An error occurred while trying to speak: {e}")
+        messagebox.showerror(
+            "Error", f"An error occurred while trying to speak: {e}")
+
 
 # User Interface
 window = Tk()
@@ -361,12 +410,15 @@ canvas = Canvas(width=800, height=526, highlightthickness=0)
 front_card = PhotoImage(file='./data/images/card_front.png')
 back_card = PhotoImage(file='./data/images/card_back.png')
 card_background = canvas.create_image(400, 263, image=front_card)
-card_title = canvas.create_text(400, 150, text='Title', font=('Ariel', 40, 'italic'))
-card_word = canvas.create_text(400, 263, text='WORD', font=('Ariel', 60, 'bold'))
+card_title = canvas.create_text(
+    400, 150, text='Title', font=('Ariel', 40, 'italic'))
+card_word = canvas.create_text(
+    400, 263, text='WORD', font=('Ariel', 60, 'bold'))
 canvas.config(bg=BACKGROUND_COLOR)
 canvas.grid(column=0, row=0, columnspan=3)
 
-progress = ttk.Progressbar(window, orient=HORIZONTAL, length=300, mode='determinate')
+progress = ttk.Progressbar(window, orient=HORIZONTAL,
+                           length=300, mode='determinate')
 progress.grid(column=0, row=4, columnspan=3, pady=20)
 
 # Button images
