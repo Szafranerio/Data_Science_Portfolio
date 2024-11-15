@@ -90,6 +90,9 @@ def say_word():
 def random_50():
     pass
 
+def numbers():
+    pass
+
 # User Interface
 window = Tk()
 window.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
