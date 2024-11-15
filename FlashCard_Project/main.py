@@ -18,6 +18,7 @@ import add_edit_delete
 import mail
 from mail import send_to_mail
 import show
+import speak
 
 load_dotenv()
 BACKGROUND_COLOR = "#B1DDC6"
@@ -39,7 +40,6 @@ except (FileNotFoundError, ValueError):
 else:
     to_learn = danish_data.to_dict(orient='records')
 
-
 def next_card():
     global current_card, flip_timer
     window.after_cancel(flip_timer)
@@ -49,26 +49,10 @@ def next_card():
     canvas.itemconfig(card_background, image=front_card)
     flip_timer = window.after(3000, func=flip_card)
 
-
 def flip_card():
     canvas.itemconfig(card_title, text='English', fill='white')
     canvas.itemconfig(card_word, text=current_card['English'], fill='white')
     canvas.itemconfig(card_background, image=back_card)
-
-
-def update_progress(value):
-    progress['value'] = value
-    window.update_idletasks()
-
-
-def increment_progress(current, total):
-    value = (current / total) * 100
-    update_progress(value)
-
-
-current_word_index = 0
-total_words = len(to_learn)
-
 
 def is_known():
     global current_word_index, current_card
@@ -79,8 +63,6 @@ def is_known():
         data = pd.DataFrame(to_learn)
         data.to_csv('./data/data/words_to_learn.csv', index=False)
         next_card()
-
-
 locale.setlocale(locale.LC_ALL, 'da_DK.UTF-8')
 
 def show_data():
@@ -89,31 +71,14 @@ def show_data():
 def send_to_mail():
     mail.send_to_mail(window)
 
-
 def add_edit_or_delete_word():
     add_edit_delete.add_edit_or_delete_word(window)
 
-
-def speak():
-    try:
-        engine = pyttsx3.init()
-        voices = engine.getProperty('voices')
-        danish_voice_id = None
-
-        for voice in voices:
-            if 'da' in voice.languages or 'Danish' in voice.name:
-                danish_voice_id = voice.id
-                break
-
-        engine.setProperty('voice', danish_voice_id)
-        engine.setProperty('rate', 125)
-        engine.say(current_card['Danish'])
-        engine.runAndWait()
-
-    except Exception as e:
-        messagebox.showerror(
-            "Error", f"An error occurred while trying to speak: {e}")
-
+def say_word():
+    speak.speak(window, current_card)
+    
+def random_50():
+    pass
 
 # User Interface
 window = Tk()
@@ -159,7 +124,7 @@ edit_button_main = Button(text='Add/Edit/Delete Words', highlightbackground=BACK
 edit_button_main.grid(column=1, row=3)
 
 speak_button = Button(text='Speaker', highlightbackground=BACKGROUND_COLOR,
-                      highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=speak)
+                      highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=say_word)
 speak_button.grid(column=1, row=1)
 
 window.mainloop()

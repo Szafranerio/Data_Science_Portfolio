@@ -252,7 +252,6 @@ et loft,a ceiling
 en lampe,a lamp
 en mark,a field
 et bjerg,a mountain
-en ø,an island
 en å,a stream
 et kort,a map
 et blad,a leaf
@@ -263,7 +262,6 @@ en boghandel,a bookstore
 et bibliotek,a library
 en biograf,a cinema
 en park,a park
-en fabrik,a factory
 et universitet,a university
 en butik,a store
 en café,a café
@@ -484,7 +482,6 @@ en modem,a modem
 et netværkskort,a network card
 en switch,a switch
 en proces,a process
-en opdatering,an update
 en backup,a backup
 et antivirus,an antivirus
 en firewall,a firewall
