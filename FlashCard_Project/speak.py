@@ -34,3 +34,4 @@ def speak(window, current_card):
 
     except Exception as e:
         messagebox.showerror(
+            "Error", f"An error occurred while trying to speak: {e}")

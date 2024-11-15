@@ -88,8 +88,24 @@ def say_word():
     speak.speak(window, current_card)
     
 def random_50():
-    pass
+    
+    data = pd.read_csv('./data/data/danish_words.csv')
+    data = data.sample(frac=1)[:50]
+      
+    data_window = Toplevel(window)
+    data_window.title("Random 50 words to practice")
 
+    tree = ttk.Treeview(data_window, columns=("Danish", "English"), show='headings', height=15)
+    tree.heading("Danish", text="Danish")
+    tree.heading("English", text="English")
+    tree.pack(padx=10, pady=10)
+    def populate_tree(data_subset):
+        for item in tree.get_children():
+            tree.delete(item)
+        for _, row in data_subset.iterrows():
+            tree.insert('', END, values=(row['Danish'], row['English']))
+    populate_tree(data)
+    
 def numbers():
     pass
 
@@ -103,11 +119,11 @@ flip_timer = window.after(5000, func=flip_card)
 canvas = Canvas(width=800, height=526, highlightthickness=0, bg=BACKGROUND_COLOR)
 front_card = PhotoImage(file='./data/images/card_front.png')
 back_card = PhotoImage(file='./data/images/card_back.png')
-card_background = canvas.create_image(400, 263, image=front_card)  # Centered at the canvas
+card_background = canvas.create_image(400, 263, image=front_card)
 card_title = canvas.create_text(
-    400, 150, text='Title', font=('Ariel', 40, 'italic'), fill='black')  # Centered at the top portion
+    400, 150, text='Title', font=('Ariel', 40, 'italic'), fill='black')
 card_word = canvas.create_text(
-    400, 263, text='WORD', font=('Ariel', 60, 'bold'), fill='black')  # Centered in the middle
+    400, 263, text='WORD', font=('Ariel', 60, 'bold'), fill='black')
 canvas.grid(column=0, row=0, columnspan=3)
 
 # Button images
@@ -134,8 +150,8 @@ edit_button_main = Button(text='Add/Edit/Delete Words', highlightbackground=BACK
                           highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=add_edit_or_delete_word)
 edit_button_main.grid(column=3, row=1)
 
-random_button = Button(text='Random words game', highlightbackground=BACKGROUND_COLOR,
-                          highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid')
+random_button = Button(text='Random 50 Words', highlightbackground=BACKGROUND_COLOR,
+                          highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=random_50)
 random_button.grid(column=3, row=2)
 
 speak_button = Button(image=speaker_button, highlightbackground=BACKGROUND_COLOR,
