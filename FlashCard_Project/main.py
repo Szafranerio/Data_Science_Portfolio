@@ -50,7 +50,7 @@ def flip_card():
     canvas.itemconfig(card_title, text='English', fill='white')
     canvas.itemconfig(card_word, text=current_card['English'], fill='white')
     canvas.itemconfig(card_background, image=back_card)
-    
+
 def update_progress(value):
     progress['value'] = value
     window.update_idletasks()

@@ -21,7 +21,6 @@ current_card = {}
 to_learn = {}
 FONT_NAME = "Courier"
 
-
 def send_to_mail(window):
     mail_window = Toplevel(window)
     mail_window.title('Send Mail')

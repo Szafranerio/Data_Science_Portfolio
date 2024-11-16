@@ -9,7 +9,6 @@ import smtplib
 import locale
 from dotenv import load_dotenv
 
-
 def random_number_50(window):
 
     data_window = Toplevel(window)

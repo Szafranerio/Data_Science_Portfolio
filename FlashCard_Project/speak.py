@@ -15,7 +15,6 @@ current_card = {}
 to_learn = {}
 FONT_NAME = "Courier"
 
-
 def speak(window, current_card):
     try:
         engine = pyttsx3.init()
@@ -34,3 +33,4 @@ def speak(window, current_card):
 
     except Exception as e:
         messagebox.showerror(
+            "Error", f"An error occurred while trying to speak: {e}")
