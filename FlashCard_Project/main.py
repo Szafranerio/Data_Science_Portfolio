@@ -19,6 +19,7 @@ import mail
 from mail import send_to_mail
 import show
 import speak
+import random_words
 
 load_dotenv()
 BACKGROUND_COLOR = "#B1DDC6"
@@ -29,13 +30,8 @@ locale.setlocale(locale.LC_ALL, 'da_DK.UTF-8')
 
 try:
     danish_data = pd.read_csv('./data/data/words_to_learn.csv')
-    required_columns = ['Danish', 'English']
-    if not all(col in danish_data.columns for col in required_columns):
-        raise ValueError("CSV file is missing required columns.")
-except (FileNotFoundError, ValueError):
+except FileNotFoundError:
     original_data = pd.read_csv('./data/data/danish_words.csv')
-    if not all(col in original_data.columns for col in required_columns):
-        raise ValueError("Original CSV file is missing required columns.")
     to_learn = original_data.to_dict(orient='records')
     original_data.to_csv('./data/data/words_to_learn.csv', index=False)
 else:
@@ -62,7 +58,6 @@ def update_progress(value):
 def increment_progress(current, total):
     value = (current / total) * 100
     update_progress(value)
-    
 
 total_words = len(to_learn) 
 
@@ -73,11 +68,10 @@ def is_known():
         data = pd.DataFrame(to_learn)
         data.to_csv('./data/data/words_to_learn.csv', index=False)
         next_card()
-        
 
 def show_data():
     show.show_data(window)
-    
+
 def send_to_mail():
     mail.send_to_mail(window)
 
@@ -86,26 +80,10 @@ def add_edit_or_delete_word():
 
 def say_word():
     speak.speak(window, current_card)
-    
-def random_50():
-    
-    data = pd.read_csv('./data/data/danish_words.csv')
-    data = data.sample(frac=1)[:50]
-      
-    data_window = Toplevel(window)
-    data_window.title("Random 50 words to practice")
 
-    tree = ttk.Treeview(data_window, columns=("Danish", "English"), show='headings', height=15)
-    tree.heading("Danish", text="Danish")
-    tree.heading("English", text="English")
-    tree.pack(padx=10, pady=10)
-    def populate_tree(data_subset):
-        for item in tree.get_children():
-            tree.delete(item)
-        for _, row in data_subset.iterrows():
-            tree.insert('', END, values=(row['Danish'], row['English']))
-    populate_tree(data)
-    
+def random_50():
+    random_words.random_number_50(window)
+
 def numbers():
     pass
 

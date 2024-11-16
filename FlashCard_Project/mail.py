@@ -39,7 +39,6 @@ def send(send_mail):
             title="Warning", message="Invalid email address!")
         return
 
-
     mail = os.getenv('MAIL')
     password = os.getenv('PASSWORD')
     recipients = send_mail
@@ -52,7 +51,7 @@ def send(send_mail):
     msg['To'] = recipients
     msg['Subject'] = subject
 
-    body = "Please find the attached data.json file."
+    body = "Please find the attached data.txt file."
     body_part = MIMEText(body, 'plain')
     msg.attach(body_part)
 

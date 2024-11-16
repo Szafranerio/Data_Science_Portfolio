@@ -19,7 +19,9 @@ en bjørn,a bear
 blod,blood
 en blomst,a flower
 at bo,to live
+en bog,a book
 et bogstav,a letter
+et brev,a letter
 briller,glasses
 brød,bread
 bukser,trousers
@@ -49,6 +51,7 @@ en ferie,a holiday
 en fest,a party
 en film,a movie
 at finde,to find
+fisk,fish
 en fisk,a fish
 et fly,an airplane
 en fod,a foot
@@ -64,6 +67,7 @@ en gris,a pig
 grøntsager,vegetables
 en hånd,a hand
 hår,hair
+en hat,a hat
 en hest,a horse
 en historie,a history
 at hjælpe,to help
@@ -85,6 +89,7 @@ jord,earth
 juice,juice
 kaffe,coffee
 en kage,a cake
+en kalender,a calendar
 en kartoffel,a potato
 en kat,a cat
 en kjole,a dress
@@ -104,6 +109,7 @@ at kunne,can
 kunst,art
 en kvinde,a woman
 en læge,a doctor
+en lærer,a teacher
 en læsning,a reading
 at lave,to make
 at leve,to live
@@ -122,6 +128,7 @@ et marked,a market
 en mave,a stomach
 medicin,medicine
 en menu,a menu
+et møde,a meeting
 en morgen,a morning
 en mund,a mouth
 et museum,a museum
@@ -179,6 +186,7 @@ solskin,sunshine
 en sovs,a sauce
 at spille,to play
 at spise,to eat
+at spørge,to ask
 et sprog,a language
 en station,a station
 en stjerne,a star
@@ -205,6 +213,7 @@ en tiger,a tiger
 et tog,a train
 tøj,clothes
 torden,thunder
+et træ,a tree
 en udstilling,an exhibition
 en uge,a week
 et ur,a watch
@@ -212,6 +221,7 @@ et ur,a clock
 vand,water
 varmt,hot
 vejret,the weather
+en ven,a friend
 at vente,to wait
 at ville,to want
 vin,wine
@@ -227,6 +237,7 @@ et hav,an ocean
 en sten,a stone
 et slot,a castle
 et vindue,a window
+en stol,a chair
 en sko,a shoe
 en telefon,a phone
 et køkken,a kitchen
@@ -243,6 +254,7 @@ et loft,a ceiling
 en lampe,a lamp
 en mark,a field
 et bjerg,a mountain
+en ø,an island
 en å,a stream
 et kort,a map
 et blad,a leaf
@@ -253,7 +265,9 @@ en boghandel,a bookstore
 et bibliotek,a library
 en biograf,a cinema
 en park,a park
+en fabrik,a factory
 et universitet,a university
+en elev,a student
 en butik,a store
 en café,a café
 en mad,food
@@ -277,7 +291,9 @@ en ørn,an eagle
 en ulv,a wolf
 en zebra,a zebra
 en giraf,a giraffe
+en får,a sheep
 en høne,a hen
+en hane,a rooster
 en and,a duck
 en svane,a swan
 en mus,a mouse
@@ -289,7 +305,6 @@ en øgle,a lizard
 en måge,a seagull
 en delfin,a dolphin
 en hval,a whale
-en hummer,a lobster
 en krabbe,a crab
 en reke,a shrimp
 en blæksprutte,an octopus
@@ -317,6 +332,7 @@ en chauffør,a driver
 en maskine,a machine
 en motor,an engine
 en tablet,a tablet
+en skærm,a screen
 en printer,a printer
 en scanner,a scanner
 et tastatur,a keyboard
@@ -327,6 +343,7 @@ et kamera,a camera
 en mikrofon,a microphone
 en højttaler,a speaker
 en ledning,a cable
+en oplader,a charger
 en stikkontakt,a socket
 et batteri,a battery
 et lys,a light
@@ -340,14 +357,17 @@ en færge,a ferry
 en helikopter,a helicopter
 en raket,a rocket
 en rumstation,a space station
+en satellit,a satellite
 et solsystem,a solar system
 en planet,a planet
 et univers,a universe
 en galakse,a galaxy
+et sort hul,a black hole
 et akvarium,an aquarium
 en festival,a festival
 en blomsterhave,a flower garden
 et legetøj,a toy
+et kæledyr,a pet
 en fodbold,a football
 en tennisketcher,a tennis racket
 en bold,a ball
@@ -365,6 +385,7 @@ et fotografi,a photograph
 en tegning,a drawing
 en pensel,a brush
 en farve,a color
+en blyantspidser,a pencil sharpener
 en viskelæder,an eraser
 en mappe,a folder
 en lommeregner,a calculator
@@ -375,18 +396,20 @@ et klasselokale,a classroom
 en skolegård,a schoolyard
 en skraldespand,a trash can
 en bænk,a bench
+et fortov,a sidewalk
 et skilt,a sign
 et sving,a turn
 en indkørsel,a driveway
 en port,a gate
 en kæde,a chain
+en lås,a lock
 en nøgle,a key
-en håndtag,a handle
 et spejl,a mirror
 en vase,a vase
 et akvarie,a fish tank
 et malerhus,a painting house
 en vindueskarm,a windowsill
+en gardin,a curtain
 et dørtrin,a doorstep
 en gårdhave,a courtyard
 et skur,a shed
@@ -397,12 +420,14 @@ en elevator,an elevator
 et tag,a roof
 et gardin,a curtain
 et hegn,a fence
+en græsplæne,a lawn
 et blomsterbed,a flowerbed
 et bassin,a basin
 en dam,a pond
 en springvand,a fountain
 en motorvej,a highway
 en landevej,a country road
+et lyskryds,a traffic light
 en rundkørsel,a roundabout
 et overkørsel,a railway crossing
 en vejbaneskift,a lane change
@@ -451,15 +476,19 @@ en webside,a website
 en browser,a browser
 en server,a server
 en database,a database
+en kode,a code
 et script,a script
 en udvikler,a developer
 et operativsystem,an operating system
 en platform,a platform
 en cybersikkerhed,cybersecurity
+et netværk,a network
 en router,a router
 en modem,a modem
 et netværkskort,a network card
 en switch,a switch
+en proces,a process
+en opdatering,an update
 en backup,a backup
 et antivirus,an antivirus
 en firewall,a firewall
@@ -467,14 +496,18 @@ en kryptering,encryption
 en decryption,decryption
 et password,a password
 et brugernavn,a username
+et ID,an ID
+et softwarefirma,a software company
 en softwareopdatering,a software update
 en installation,an installation
 en afinstallation,an uninstallation
 en plugin,a plugin
 en tilføjelse,an add-on
 en udvidelse,an extension
+en adgang,access
 en administrator,an administrator
 et værktøj,a tool
+en editor,an editor
 et felt,a field
 en formular,a form
 en template,a template
@@ -496,11 +529,13 @@ et ikon,an icon
 et faneblad,a tab
 en skærmlås,a screen lock
 en opløsning,a resolution
+et display,a display
 en lysstyrke,brightness
 en farveskærm,a color screen
 en baggrund,a background
 en startside,a homepage
 et hyperlink,a hyperlink
+en URL,a URL
 en sikkerhedskopi,a backup
 en adgangskode,a password
 et opkald,a call
@@ -513,10 +548,12 @@ en hukommelse,memory
 en RAM,RAM
 en CPU,a CPU
 en GPU,a GPU
+en harddiskplads,hard disk space
 et datacenter,a data center
 en webserver,a web server
 en filserver,a file server
 en streaming,streaming
+en ethernetport,an ethernet port
 en LAN-kabel,a LAN cable
 en netværksforbindelse,a network connection
 en netværkshastighed,network speed
