@@ -1,10 +1,9 @@
 {
     "stock": {
         "ticker": "XRP-USD",
-        "days": 400,
+        "days": 150,
         "mail": "bartekszafran@icloud.com",
         "analysis": [
-            "Price",
             "Candlestick",
             "RSI",
             "MACD",

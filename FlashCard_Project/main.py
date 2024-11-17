@@ -85,6 +85,50 @@ def random_50():
     random_words.random_number_50(window)
 
 def numbers():
+    try:
+        number_data = pd.read_csv('./data/data/danish_numbers.csv')
+        data_window = Toplevel(window)
+        data_window.title("Number Data")
+        
+        search_frame = Frame(data_window)
+        search_frame.pack(pady=5)
+        Label(search_frame, text="Search:", font=(FONT_NAME, 12)).pack(side=LEFT, padx=5)
+        search_entry = Entry(search_frame, width=30)
+        search_entry.pack(side=LEFT, padx=5)
+
+        # Create a Treeview widget
+        tree = ttk.Treeview(data_window, columns=("Number", "Danish"), show='headings', height=15)
+        tree.heading("Number", text="Number")
+        tree.heading("Danish", text="Danish")
+        tree.pack(padx=10, pady=10)
+        
+        def populate_tree(data_subset):
+            for item in tree.get_children():
+                tree.delete(item)
+            for _, row in data_subset.iterrows():
+                tree.insert('', END, values=(row['Number'], row['Danish']))
+
+        populate_tree(number_data)
+
+        # Search functionality
+        def search_word():
+            search_text = search_entry.get().strip().lower()
+            filtered_data = number_data[(number_data['Number'].str.lower().str.contains(search_text)) | 
+                                 (number_data['Danish'].str.lower().str.contains(search_text))]
+            populate_tree(filtered_data)
+
+        search_entry.bind("<KeyRelease>", lambda event: search_word())
+
+    except FileNotFoundError:
+        messagebox.showerror(title="Error", message="No data file found!")
+    except pd.errors.EmptyDataError:
+        messagebox.showerror(title="Error", message="The data file is empty!")
+    except locale.Error as e:
+        messagebox.showerror(title="Locale Error", message=f"Locale error: {e}")
+    except Exception as e:
+        messagebox.showerror(title="Error", message=f"An error occurred: {e}")
+
+    
     pass
 
 # User Interface
@@ -135,5 +179,11 @@ random_button.grid(column=3, row=2)
 speak_button = Button(image=speaker_button, highlightbackground=BACKGROUND_COLOR,
                       highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=say_word)
 speak_button.grid(column=1, row=1)
+
+button_number = Button(text='Number data', highlightbackground=BACKGROUND_COLOR,
+                     highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=numbers)
+button_number.grid(column=2, row=2)
+
+
 
 window.mainloop()
