@@ -12,13 +12,11 @@ from email.mime.application import MIMEApplication
 from tkinter import ttk
 from natsort import natsorted, ns
 
-
 load_dotenv()
 BACKGROUND_COLOR = "#B1DDC6"
 current_card = {}
 to_learn = {}
 FONT_NAME = "Courier"
-
 
 def numbers_practice(window):
     try:
@@ -45,7 +43,6 @@ def numbers_practice(window):
                 tree.delete(item)
             for _, row in data_subset.iterrows():
                 tree.insert('', END, values=(row['Number'], row['Danish']))
-
         populate_tree(number_data)
 
     except FileNotFoundError:
