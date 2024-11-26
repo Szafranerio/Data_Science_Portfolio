@@ -44,13 +44,13 @@ def next_card():
     current_card = random.choice(to_learn)
     canvas.itemconfig(card_title, text='Danish', fill='black')
     canvas.itemconfig(card_word, text=current_card['Danish'], fill='black')
-    canvas.itemconfig(card_background, image=front_card)
+    
     flip_timer = window.after(3000, func=flip_card)
 
 def flip_card():
-    canvas.itemconfig(card_title, text='English', fill='white')
-    canvas.itemconfig(card_word, text=current_card['English'], fill='white')
-    canvas.itemconfig(card_background, image=back_card)
+    canvas.itemconfig(card_title, text='English', fill='black')
+    canvas.itemconfig(card_word, text=current_card['English'], fill='black')
+
 
 def update_progress(value):
     progress['value'] = value
@@ -95,50 +95,49 @@ window.title('Flash Cards')
 
 flip_timer = window.after(5000, func=flip_card)
 
-canvas = Canvas(width=800, height=526, highlightthickness=0, bg=BACKGROUND_COLOR)
-front_card = PhotoImage(file='./data/images/card_front.png')
-back_card = PhotoImage(file='./data/images/card_back.png')
-card_background = canvas.create_image(400, 263, image=front_card)
+canvas = Canvas(width=800, height=300, highlightthickness=0, bg=BACKGROUND_COLOR)
 card_title = canvas.create_text(
-    400, 150, text='Title', font=('Ariel', 40, 'italic'), fill='black')
+    300, 60, text='Title', font=('Ariel', 40, 'italic'), fill='black')
 card_word = canvas.create_text(
-    400, 263, text='WORD', font=('Ariel', 60, 'bold'), fill='black')
-canvas.grid(column=0, row=0, columnspan=3)
+    300, 150, text='WORD', font=('Ariel', 60, 'bold'), fill='black')
+canvas.grid(column=1, row=0, padx=10, pady=10)
 
 # Button images
 ok_button = PhotoImage(file='./data/images/right.png')
 false_button = PhotoImage(file='./data/images/wrong.png')
 speaker_button = PhotoImage(file='./data/images/speaker.png')
 
-correct_button = Button(image=ok_button, highlightbackground=BACKGROUND_COLOR,
-                        highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=is_known)
-correct_button.grid(column=2, row=1)
 
 wrong_button = Button(image=false_button, highlightbackground=BACKGROUND_COLOR,
-                      highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=next_card)
-wrong_button.grid(column=0, row=1)
-send_button = Button(text='Send to mail', highlightbackground=BACKGROUND_COLOR,
-                     highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=send_to_mail)
-send_button.grid(column=3, row=3)
-
-button_show = Button(text='Show data', highlightbackground=BACKGROUND_COLOR,
-                     highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=show_data)
-button_show.grid(column=3, row=0)
-
-edit_button_main = Button(text='Add/Edit/Delete Words', highlightbackground=BACKGROUND_COLOR,
-                          highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=add_edit_or_delete_word)
-edit_button_main.grid(column=3, row=1)
-
-random_button = Button(text='Random 50 Words', highlightbackground=BACKGROUND_COLOR,
-                          highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=random_50)
-random_button.grid(column=3, row=2)
+highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=next_card)
+wrong_button.grid(column=0, row=1, padx=5, pady=5)
 
 speak_button = Button(image=speaker_button, highlightbackground=BACKGROUND_COLOR,
-                      highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=say_word)
-speak_button.grid(column=1, row=1)
+highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=say_word)
+speak_button.grid(column=1, row=1, padx=5, pady=5)
+
+correct_button = Button(image=ok_button, highlightbackground=BACKGROUND_COLOR,
+highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=is_known)
+correct_button.grid(column=2, row=1, padx=5, pady=5)
+
+button_show = Button(text='Show data', highlightbackground=BACKGROUND_COLOR,
+highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=show_data)
+button_show.grid(column=0, row=2)
+
+edit_button_main = Button(text='Add/Edit/Delete Words', highlightbackground=BACKGROUND_COLOR,
+highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=add_edit_or_delete_word)
+edit_button_main.grid(column=1, row=2)
+
+random_button = Button(text='Random 50 Words', highlightbackground=BACKGROUND_COLOR,
+highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=random_50)
+random_button.grid(column=2, row=2)
 
 button_number = Button(text='Number data', highlightbackground=BACKGROUND_COLOR,
-                     highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=practice_numbers)
-button_number.grid(column=2, row=2)
+highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=practice_numbers)
+button_number.grid(column=0, row=3)
+
+send_button = Button(text='Send to mail', highlightbackground=BACKGROUND_COLOR,
+highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=send_to_mail)
+send_button.grid(column=1, row=3)
 
 window.mainloop()

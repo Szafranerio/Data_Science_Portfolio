@@ -19,7 +19,6 @@ en bjørn,a bear
 blod,blood
 en blomst,a flower
 at bo,to live
-en bog,a book
 et bogstav,a letter
 et brev,a letter
 briller,glasses
@@ -44,7 +43,6 @@ et dyr,an animal
 en e-mail,an email
 en elefant,an elephant
 at elske,to love
-en familie,a family
 et får,a sheep
 en ferie,a holiday
 en fest,a party
@@ -73,7 +71,6 @@ at hjælpe,to help
 et hjerte,a heart
 et hospital,a hospital
 et hotel,a hotel
-et hoved,a head
 hud,skin
 en hund,a dog
 et hus,a house
@@ -158,7 +155,6 @@ et rejsekort,a travel card
 en restaurant,a restaurant
 ringe,rings
 ris,rice
-en ryg,a back
 en salat,a salad
 at sælge,to sell
 salt,salt
@@ -179,7 +175,6 @@ smykker,jewelry
 sne,snow
 at søge,to search
 en sol,a sun
-solbriller,sunglasses
 solskin,sunshine
 en sovs,a sauce
 at spille,to play
@@ -234,7 +229,6 @@ en båd,a boat
 et hav,an ocean
 en sten,a stone
 et slot,a castle
-et vindue,a window
 en stol,a chair
 en sko,a shoe
 en telefon,a phone
@@ -272,7 +266,6 @@ en mad,food
 en drink,a drink
 en frugt,a fruit
 en grøntsag,a vegetable
-en gade,a street
 et tårn,a tower
 en bro,a bridge
 et palads,a palace
@@ -291,7 +284,6 @@ en giraf,a giraffe
 en får,a sheep
 en høne,a hen
 en hane,a rooster
-en and,a duck
 en svane,a swan
 en mus,a mouse
 en rotte,a rat
@@ -326,11 +318,9 @@ en soldat,a soldier
 en politi,a police officer
 en brandmand,a firefighter
 en pilot,a pilot
-en chauffør,a driver
 en maskine,a machine
 en motor,an engine
 en tablet,a tablet
-en skærm,a screen
 en printer,a printer
 en scanner,a scanner
 et tastatur,a keyboard
@@ -384,7 +374,6 @@ en pensel,a brush
 en farve,a color
 en blyantspidser,a pencil sharpener
 en viskelæder,an eraser
-en mappe,a folder
 en lommeregner,a calculator
 en notesbog,a notebook
 et skrivebord,a desk
@@ -398,7 +387,6 @@ et skilt,a sign
 et sving,a turn
 en indkørsel,a driveway
 en port,a gate
-en kæde,a chain
 en lås,a lock
 en nøgle,a key
 en håndtag,a handle
@@ -436,7 +424,6 @@ en afgang,a departure
 en ankomst,an arrival
 en vogn,a cart
 et sikkerhedsbælte,a seatbelt
-en rute,a route
 en destination,a destination
 en rejseguide,a travel guide
 en bagage,luggage
@@ -444,7 +431,6 @@ en rygsæk,a backpack
 en kuffert,a suitcase
 en kuvert,an envelope
 en postkasse,a mailbox
-et postkontor,a post office
 en vejrudsigt,a weather forecast
 en sne,snow
 en storm,a storm
@@ -486,13 +472,11 @@ en switch,a switch
 en proces,a process
 en opdatering,an update
 en backup,a backup
-et antivirus,an antivirus
 en firewall,a firewall
 en kryptering,encryption
 en decryption,decryption
 et password,a password
 et brugernavn,a username
-et ID,an ID
 et softwarefirma,a software company
 en softwareopdatering,a software update
 en installation,an installation

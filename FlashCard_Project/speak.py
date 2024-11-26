@@ -27,7 +27,7 @@ def speak(window, current_card):
                 break
 
         engine.setProperty('voice', danish_voice_id)
-        engine.setProperty('rate', 20)
+        engine.setProperty('rate', 150)
         engine.say(current_card.get('Danish', 'No word to speak'))  # Use .get() to avoid KeyError
         engine.runAndWait()
 
