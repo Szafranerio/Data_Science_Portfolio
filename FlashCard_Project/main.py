@@ -22,9 +22,19 @@ import speak
 import random_words
 import numbers_practice
 import review_words
+from switch_color import switch_color
+
 
 load_dotenv()
-BACKGROUND_COLOR = "#E8E8E8"
+is_night_mode = False
+DAY_BACKGROUND_COLOR = "#E8E8E8"
+BACKGROUND_COLOR = DAY_BACKGROUND_COLOR
+NIGHT_BACKGROUND_COLOR = "#1E1E1E"
+DAY_TEXT_COLOR = "black"
+NIGHT_TEXT_COLOR = "#E0E0E0"
+START_COLOR = 'white'
+TEXT_COLOR = DAY_TEXT_COLOR
+
 current_card = {}
 to_learn = {}
 missed_word = []
@@ -44,18 +54,18 @@ def next_card():
     global current_card, flip_timer, missed_word
     window.after_cancel(flip_timer)
     current_card = random.choice(to_learn)
-    canvas.itemconfig(card_title, text='Danish', fill='black')
-    canvas.itemconfig(card_word, text=current_card['Danish'], fill='black')
+    canvas.itemconfig(card_title, text='Danish', fill=TEXT_COLOR)
+    canvas.itemconfig(card_word, text=current_card['Danish'], fill=TEXT_COLOR)
     flip_timer = window.after(3000, func=flip_card)
     missed_word.append(current_card)
     
+def flip_card():
+    canvas.itemconfig(card_title, text='English', fill=TEXT_COLOR)
+    canvas.itemconfig(card_word, text=current_card['English'], fill=TEXT_COLOR)
+        
 def review():
     review_words.review_words(window)
-
-def flip_card():
-    canvas.itemconfig(card_title, text='English', fill='black')
-    canvas.itemconfig(card_word, text=current_card['English'], fill='black')
-
+    
 def is_known():
     global current_card
     if current_card in to_learn:
@@ -82,6 +92,15 @@ def random_50():
 def practice_numbers():
     numbers_practice.numbers_practice(window)
     
+def night_mode():
+    global NIGHT_TEXT_COLOR, NIGHT_BACKGROUND_COLOR  # Ensure global variables are updated
+    print("Toggling night mode")  # Debugging
+    buttons = [wrong_button, speak_button, correct_button, button_show, 
+               edit_button_main, random_button, button_number, 
+               send_button, review_button, night_mode_button]
+    switch_color(window, canvas, card_title, card_word, buttons)
+
+
 # User Interface
 window = Tk()
 window.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
@@ -91,9 +110,9 @@ flip_timer = window.after(5000, func=flip_card)
 
 canvas = Canvas(width=800, height=300, highlightthickness=0, bg=BACKGROUND_COLOR)
 card_title = canvas.create_text(
-    400, 60, text='Title', font=('Ariel', 40, 'italic'), fill='black')
+    400, 60, text='Title', font=('Ariel', 40, 'italic'), fill=START_COLOR)
 card_word = canvas.create_text(
-    400, 150, text='WORD', font=('Ariel', 60, 'bold'), fill='black')
+    400, 150, text='WORD', font=('Ariel', 60, 'bold'), fill=START_COLOR)
 canvas.grid(column=1, row=0, padx=10, pady=10)
 
 # Button images
@@ -136,5 +155,9 @@ send_button.grid(column=1, row=3)
 review_button = Button(text='Review', highlightbackground=BACKGROUND_COLOR,
 highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=review)
 review_button.grid(column=2, row=3)
+
+night_mode_button = Button(text='Switch mode', highlightbackground=BACKGROUND_COLOR,
+highlightcolor=BACKGROUND_COLOR, highlightthickness=4, relief='solid', command=night_mode)
+night_mode_button.grid(column=1, row=4)
 
 window.mainloop()
