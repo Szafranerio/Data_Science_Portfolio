@@ -10,12 +10,10 @@ to_learn = {}
 missed_word = []
 FONT_NAME = "Courier"
 
-
-def switch_color(window, canvas, card_title, card_word, buttons):
+def switch_color(window, canvas, card_title, card_word, buttons, current_card):
     global is_night_mode, TEXT_COLOR, BACKGROUND_COLOR
     is_night_mode = not is_night_mode
 
-    # Update colors based on the mode
     if is_night_mode:
         BACKGROUND_COLOR = NIGHT_BACKGROUND_COLOR
         TEXT_COLOR = NIGHT_TEXT_COLOR
@@ -23,10 +21,7 @@ def switch_color(window, canvas, card_title, card_word, buttons):
         BACKGROUND_COLOR = DAY_BACKGROUND_COLOR
         TEXT_COLOR = DAY_TEXT_COLOR
 
-    # Debug output to verify updates
-    print(f"switch_color: TEXT_COLOR={TEXT_COLOR}, BACKGROUND_COLOR={BACKGROUND_COLOR}")
-
-    # Update UI components
+    # Update UI 
     window.config(bg=BACKGROUND_COLOR)
     canvas.config(bg=BACKGROUND_COLOR)
     canvas.itemconfig(card_title, fill=TEXT_COLOR)
