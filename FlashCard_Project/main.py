@@ -1,19 +1,9 @@
 from tkinter import *
 import pandas as pd
 import random
-import json
 from tkinter import messagebox, ttk, END
-import os
-import re
-import smtplib
-import locale
 from dotenv import load_dotenv
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-from email.mime.application import MIMEApplication
-from tkinter import ttk
-from natsort import natsorted, ns
-import pyttsx3
+import locale
 import add_edit_delete
 import mail
 from mail import send_to_mail
