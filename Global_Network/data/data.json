@@ -1,0 +1,93 @@
+[
+    {
+        "data": {
+            "country": "Andorra",
+            "category": "Retail",
+            "subcategory": "Shopping Malls",
+            "name": "Das",
+            "city": "dsa",
+            "address": "dsa421",
+            "cvr": "37319902",
+            "mail": "da@daa.pl",
+            "number": "50275452"
+        }
+    },
+    {
+        "data": {
+            "country": "Andorra",
+            "category": "Healthcare",
+            "subcategory": "Pharmacies",
+            "name": "Das",
+            "city": "dsa",
+            "address": "das123",
+            "cvr": "37319902",
+            "mail": "das@wp.pl",
+            "number": "23321321"
+        }
+    },
+    {
+        "data": {
+            "country": "Armenia",
+            "category": "Healthcare",
+            "subcategory": "Dental Offices",
+            "name": "Dsad",
+            "city": "edwqa",
+            "address": "dsa 123",
+            "cvr": "37319902",
+            "mail": "das@wp.pl",
+            "number": "50275452"
+        }
+    },
+    {
+        "data": {
+            "country": "Armenia",
+            "category": "Retail",
+            "subcategory": "Clothing Stores",
+            "name": "Kjhg",
+            "address": "kjhb kjh 987",
+            "cvr": "37319902",
+            "mail": "dsadsa@wp.pl",
+            "number": "12312333",
+            "coordinates": "45.123124 67.123123"
+        }
+    },
+    {
+        "data": {
+            "country": "Andorra",
+            "category": "Healthcare",
+            "subcategory": "Clinics",
+            "name": "Dasd",
+            "address": "dasda dasda dsasd",
+            "cvr": "37319902",
+            "mail": "dass@wp.pl",
+            "number": "23322332",
+            "coordinates": "45.312312, 87.314234"
+        }
+    },
+    {
+        "data": {
+            "country": "Denmark",
+            "category": "Education",
+            "subcategory": "Universities",
+            "name": "Aalborg university",
+            "address": "Fredrik Bajers Vej 7K Aalborg 9220",
+            "cvr": "99400940",
+            "mail": "aau@aau.dk",
+            "number": "99409940",
+            "coordinates": "57.0140704965241, 9.984930909247758"
+        }
+    },
+    {
+        "data": {
+            "country": "Denmark",
+            "category": "Education",
+            "subcategory": "Universities",
+            "name": "Aarhus university",
+            "address": "Nordre Ringgade 1 Aarhus 8000",
+            "cvr": "31119103",
+            "mail": "au@au.dk",
+            "number": "87150000",
+            "coordinates": "56.1667, 10.2000"
+        }
+    }
+]
