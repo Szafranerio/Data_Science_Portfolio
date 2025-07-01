@@ -1,0 +1,12 @@
+# Ignore compiled Python files
+*.pyc
+__pycache__/
+
+# Ignore the generated HTML map
+footprint.html
+
+# Ignore system files
+.DS_Store
+
+# Ignore environment files (if any)
+.env
