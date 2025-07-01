@@ -1,0 +1,54 @@
+# ========== Python ==========
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ========== Virtual Environments ==========
+.env/
+.venv/
+env/
+venv/
+*.env
+
+# ========== Model Weights & Checkpoints ==========
+*.pt
+*.pth
+*.ckpt
+
+# ========== Output & Input Data ==========
+runs/
+output_videos/
+input_videos/
+footprint.html
+*.log
+*.tmp
+*.jpg
+*.jpeg
+*.png
+*.txt
+*.cbm
+*.yaml
+# ========== VS Code Temp Files ==========
+.vscode/
+tempCodeRunnerFile.py
+
+# ========== macOS System Files ==========
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ========== Misc Tools / IDEs ==========
+*.swp
+*.swo
+.idea/
+*.bak
+*.old
+
+# ========== Jupyter Notebook Checkpoints ==========
+.ipynb_checkpoints/
+
+# ========== Thumbnails or Cache ==========
+*.thumb
+*.cache
+*.pytest_cache/

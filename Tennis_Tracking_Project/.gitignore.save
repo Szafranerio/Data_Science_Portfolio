@@ -1,0 +1,5 @@
+models
+yolov8x.pt
+runs
+data
+.env
