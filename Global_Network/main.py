@@ -69,7 +69,12 @@ Label(form_frame, text="Select Category").grid(row=1, column=0, padx=10, pady=10
 category_var = StringVar()
 category_dropdown = ttk.Combobox(form_frame, textvariable=category_var, values=list(categories.keys()), state="readonly", width=30)
 category_dropdown.grid(row=1, column=1, padx=10, pady=10)
-category_dropdown.bind("<<ComboboxSelected>>", updated_subcategories)
+category_dropdown.bind("<<ComboboxSelected>>", lambda event: updated_subcategories(
+    event,
+    category_var,
+    subcategory_dropdown,
+    subcategory_var
+))
 
 Label(form_frame, text="Select Subcategory").grid(row=2, column=0, padx=10, pady=10, sticky='e')
 subcategory_var = StringVar()
@@ -115,7 +120,24 @@ input_longitude.grid(column=1, row=11)
 button_frame = Frame(window)
 button_frame.grid(row=12, column=1, pady=10)
 
-button = Button(form_frame, text='Save', command=lambda: [selected_subcategory(), recive_data()])
+button = Button(form_frame, text='Save', command=lambda: [
+    selected_subcategory(subcategory_var),
+    validation.recive_data(
+        window,
+        input_name,
+        input_city,
+        input_address,
+        input_postal,
+        input_cvr,
+        input_mail,
+        input_number,
+        input_latitude,
+        input_longitude,
+        country_var,
+        category_var,
+        subcategory_var
+    )
+])
 button.grid(column=1, row=12)
 
 button_show = Button(form_frame, text='Show data', command=lambda: show_data(window))

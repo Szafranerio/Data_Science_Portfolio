@@ -40,7 +40,9 @@ global_list_of_eu = []
 global_branches_value = []
 load_dotenv()
 
-def recive_data(window, input_name, input_city, input_address, input_postal, input_cvr, input_mail, input_number, input_latitude, input_longitude):
+def recive_data(window, input_name, input_city, input_address, input_postal,
+                input_cvr, input_mail, input_number, input_latitude, input_longitude,
+                country_var, category_var, subcategory_var):
     
     name = input_name.get().capitalize()
     city = input_city.get()
@@ -129,16 +131,16 @@ def recive_data(window, input_name, input_city, input_address, input_postal, inp
         input_latitude.delete(0, END)
         input_longitude.delete(0, END)
 
-def selected_subcategory(window):
+def selected_subcategory(subcategory_var):
     global global_branches_value
     global_branches_value.clear()
     sub = subcategory_var.get()
     if sub:
-        global_branches_value.append(sub) 
+        global_branches_value.append(sub)
         
-def updated_subcategories(window, event):
-       selected_category = category_var.get()
-       sub_items = categories.get(selected_category, [])
-       subcategory_dropdown['values'] = sub_items
-       subcategory_var.set('')
+def updated_subcategories(event, category_var, subcategory_dropdown, subcategory_var):
+    selected_category = category_var.get()
+    sub_items = categories.get(selected_category, [])
+    subcategory_dropdown['values'] = sub_items
+    subcategory_var.set('')
        

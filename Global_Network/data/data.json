@@ -89,5 +89,18 @@
             "number": "87150000",
             "coordinates": "56.1667, 10.2000"
         }
+    },
+    {
+        "data": {
+            "country": "Denmark",
+            "category": "Education",
+            "subcategory": "Universities",
+            "name": "University college of northern denmark (ucn)",
+            "address": "Sofindesvej 60 Aalborg 9000",
+            "cvr": "30843126",
+            "mail": "info@ucn.dk",
+            "number": "72690000",
+            "coordinates": "57.021055, 9.885131"
+        }
     }
 ]
