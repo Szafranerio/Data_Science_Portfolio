@@ -102,5 +102,18 @@
             "number": "72690000",
             "coordinates": "57.021055, 9.885131"
         }
+    },
+    {
+        "data": {
+            "country": "Denmark",
+            "category": "Education",
+            "subcategory": "Universities",
+            "name": "University college of northern denmark (ucn)",
+            "address": "Hobrovej 80 Aalborg 9000",
+            "cvr": "30843126",
+            "mail": "campus-hv@ucn.dk",
+            "number": "72690000",
+            "coordinates": "57.033054, 9.909609\n"
+        }
     }
 ]
