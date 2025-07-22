@@ -48,7 +48,7 @@
             "cvr": "37319902",
             "mail": "dsadsa@wp.pl",
             "number": "12312333",
-            "coordinates": "45.123124 67.123123"
+            "coordinates": "45.123124, 67.123123"
         }
     },
     {
@@ -113,7 +113,7 @@
             "cvr": "30843126",
             "mail": "campus-hv@ucn.dk",
             "number": "72690000",
-            "coordinates": "57.033054, 9.909609\n"
+            "coordinates": "57.033054, 9.909609"
         }
     }
 ]

@@ -58,7 +58,8 @@ def show_map_window(window):
             if not coords or ',' not in coords:
                 continue
 
-            lat, lon = map(float, coords.split(","))
+            lat_str, lon_str = coords.split(",")
+            lat, lon = float(lat_str.strip()), float(lon_str.strip())
             
             if country_filter and country != country_filter:
                 continue
